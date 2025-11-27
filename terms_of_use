@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terms of Use - SmartWork AI</title>
+  <meta name="theme-color" content="#0b1020" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-2: #0e1428;
+      --txt: #e6e9f0;
+      --muted: #aab3c5;
+      --brand: #5b8eff;
+      --brand-2: #22d3ee;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius-lg: 28px;
+      --maxw: 900px;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(34,211,238,.15), rgba(34,211,238,0) 55%),
+        radial-gradient(1200px 600px at 110% 10%, rgba(91,142,255,.18), rgba(91,142,255,0) 45%),
+        var(--bg);
+      color: var(--txt);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--brand-2); }
+    
+    .container { max-width: var(--maxw); margin-inline: auto; padding: 0 20px; }
+    
+    /* Header/Logo */
+    header { padding: 30px 0; display: flex; justify-content: center; }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; text-decoration: none; }
+    .logo-mark {
+      inline-size: 36px;
+      block-size: 36px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+      color: #001;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      font-weight: 900;
+      font-size: 1.1rem;
+    }
+
+    /* Content Card */
+    .content-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 40px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      margin-bottom: 40px;
+    }
+
+    /* Typography */
+    h1 { 
+      font-size: clamp(28px, 4vw, 42px); 
+      margin: 0 0 30px; 
+      text-align: center;
+      background: linear-gradient(90deg, var(--brand), var(--brand-2)); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+    }
+    h2 { font-size: 1.4rem; margin: 30px 0 16px; color: var(--txt); border-bottom: 1px solid rgba(255,255,255,.1); padding-bottom: 10px; }
+    h3 { font-size: 1.1rem; margin: 24px 0 10px; color: var(--brand-2); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.9rem; }
+    p { margin-bottom: 16px; color: var(--muted); }
+    ul { margin: 16px 0; padding-left: 24px; color: var(--muted); }
+    li { margin-bottom: 8px; }
+    strong { color: var(--txt); }
+
+    /* Glossary List */
+    .glossary-item { margin-bottom: 12px; }
+    .glossary-term { color: var(--brand-2); font-weight: 700; margin-right: 6px; }
+
+    footer { padding: 40px 0; color: var(--muted); text-align: center; margin-top: auto; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,.05); }
+
+    @media (max-width: 768px) {
+      .content-card { padding: 24px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">
+      <span class="logo-mark">AI</span>
+      <span style="font-size: 1.4rem; color: var(--txt);">SmartWork AI</span>
+    </a>
+  </header>
+
+  <main class="container">
+    <div class="content-card">
+      <h1>Terms of Use</h1>
+      
+      <p>Welcome to our website. Please read all the terms below carefully.</p>
+      
+      <p>This document, along with the entire content of the site, is provided by <strong>SmartWork AI</strong>, here represented simply as "COMPANY", which regulates all rights and obligations with everyone who accesses the site, herein referred to as "VISITOR", preserving all rights provided under the law, includes the following clauses as a requirement for access and visitation of the same, located at the address <strong>smartworkai.com</strong> (and associated domains).</p>
+      
+      <p>Continued presence on the website implies automatic reading and tacit acceptance of the following terms of use. This term was last updated on November 26, 2025.</p>
+
+      <h2>About the Site's Function</h2>
+      <p>This site was created and developed to provide high-quality informational content, the sale of physical and digital products, and the promotion of service offerings. The COMPANY seeks to deliver knowledge accessible to everyone through the creation of high-quality content developed by professionals in the field, as well as the promotion of its own services.</p>
+      <p>On this platform, both the dissemination of original high-quality material and e-commerce products can be performed.</p>
+      <p>All content on this site has been developed using reliable sources and materials, as based on serious and respected studies through high-level research.</p>
+      <p>All content is periodically updated; however, some articles, videos, or images may contain information that does not reflect the current truth, and the COMPANY cannot be held liable in any way or means for any content that is not duly updated.</p>
+      <p>It is the user's responsibility to use all information on the site critically, using it only as a source of information and always seeking experts in the field for a concrete solution to their issue.</p>
+
+      <h2>Acceptance of Terms</h2>
+      <p>This term specifies and requires that every user accessing the COMPANY's site read and understand all its clauses, as it establishes rights and obligations between the COMPANY and the VISITOR, expressly accepted by the VISITOR to continue navigating the COMPANY's site.</p>
+      <p>By continuing to access the site, the VISITOR expresses that they accept and understand all clauses, as well as fully agree with each one of them, this acceptance being essential for continued presence on the site. If the VISITOR disagrees with any clause or term of this contract, they must immediately cease their navigation in all forms and means.</p>
+      <p>This term may and will be periodically updated by the COMPANY, which reserves the right to change it, without any prior notice or communication. It is important that the VISITOR always checks if there has been movement and what the last update of the term was at the beginning of the page.</p>
+
+      <h2>Glossary</h2>
+      <p>This term may contain some specific words that may not be of general knowledge. Among them:</p>
+      <div class="glossary-item"><span class="glossary-term">VISITOR:</span> Any and all users of the site, in any form and means, who access through a computer, notebook, tablet, cell phone, or any other means, the company's website or platform.</div>
+      <div class="glossary-item"><span class="glossary-term">NAVIGATION:</span> The act of visiting pages and content of the website or company platform.</div>
+      <div class="glossary-item"><span class="glossary-term">COOKIES:</span> Small text files automatically generated by the site and transmitted to the visitor's browser, which serve to improve the usability of the visitor.</div>
+      <div class="glossary-item"><span class="glossary-term">LOGIN:</span> Visitor's access data when registering with the COMPANY, divided between username and password, which gives access to restricted functions of the site.</div>
+      <div class="glossary-item"><span class="glossary-term">HYPERLINKS:</span> Clickable links that may appear through the site or in the content, leading to another page of the COMPANY or an external site.</div>
+      <div class="glossary-item"><span class="glossary-term">OFFLINE:</span> When the site or platform is unavailable, unable to be accessed externally by any user.</div>
+      <p>In case of doubts about any word used in this term, the VISITOR should contact the COMPANY through the communication channels found on the site.</p>
+
+      <h2>Access to the Site</h2>
+      <p>The Site and platform normally operate 24 (twenty-four) hours a day, but there may be small temporary interruptions for adjustments, maintenance, server changes, technical failures, or force majeure, which can make the site temporarily unavailable.</p>
+      <p>The COMPANY is not responsible for any loss of opportunity or damages that this temporary unavailability may generate to users.</p>
+      <p>In case of maintenance that requires a longer time, the COMPANY will inform customers in advance of the need and the expected duration during which the site or platform will be offline.</p>
+      <p>Access to the site is only allowed to individuals over 18 years of age or those who have full civil capacity. For access by minors, the express authorization of parents or guardians is required, who will be responsible for any purchases or access made by them.</p>
+      <p>If it is necessary to register with the platform, where the VISITOR must fill out a form with their data and information to access some restricted part, or make a purchase.</p>
+      <p>All data is protected under the General Data Protection Law, and by registering on the site, the VISITOR fully agrees with the data collection as per the Law and the COMPANY's Privacy Policy.</p>
+
+      <h2>License to Use and Copy</h2>
+      <p>The visitor may access all content of the website, such as articles, videos, images, products, and services, which does not imply any type of assignment of rights or permission to use or copy them.</p>
+      <p>All rights are preserved, according to Brazilian legislation, especially in the Copyright Law (regulated by Law No. 9.610/18), as well as the Brazilian Civil Code (regulated by Law No. 10.406/02), or any other applicable legislation.</p>
+      <p>All content of the site is protected by copyright, and its use, copy, transmission, sale, assignment, or resale must follow Brazilian law, with the COMPANY reserving all its rights, not allowing the copy or use in any form and means without express and written authorization.</p>
+      <p>The COMPANY may, in specific cases, allow exceptions to this right, which will be clearly highlighted in the same, with the form and permission to use the protected content. This right is revocable and limited to the specifications of each case.</p>
+
+      <h2>Obligations</h2>
+      <p>The VISITOR, by using the COMPANY's website, agrees entirely to:</p>
+      <ul>
+        <li>In no way or means perform any type of action that attempts to invade, hack, destroy, or harm the structure of the site, the COMPANY's platform, or its commercial partners. This includes, but is not limited to, the sending of computer viruses, DDOS attacks, unauthorized access through faults of the same, or any other form and means.</li>
+        <li>Not to engage in improper dissemination in site comments of SPAM, competing companies, viruses, content that does not have copyrights, or any other content that is not pertinent to the discussion of that text, video, or image.</li>
+        <li>The prohibition on reproducing any content from the site or platform without express authorization, being able to respond civilly and criminally for the same.</li>
+        <li>With the Privacy Policy of the site, as well as we handle the data concerning the registration and visit to the site, being able to at any time and form, request the deletion of the same, through the contact form.</li>
+      </ul>
+
+      <h2>Monetization and Advertising</h2>
+      <p>The COMPANY may rent or sell advertising spaces on the platform or the site, directly to advertisers, or through specialized companies such as Adsense (Google), Taboola, or other specialized.</p>
+      <p>These advertisements do not imply any form of endorsement or responsibility by the same, leaving the VISITOR responsible for purchases, visits, accesses, or any actions related to these companies.</p>
+      <p>All advertisements on the site or platform will be clearly marked as advertising, as a form of disclaimer from the COMPANY and for the knowledge of the VISITOR.</p>
+      <p>In cases of purchase of products or services, it will be possible to return them within 07 (seven) days, in accordance with the Consumer Defense Code.</p>
+      <p>These ads may be selected by the advertising company automatically, based on recent visits by the VISITOR, as well as based on their search history, according to the platform's access policies.</p>
+
+      <h2>General Terms</h2>
+      <p>The Site will present hyperlinks throughout its navigation, which may lead directly to another page of the COMPANY or to external sites.</p>
+      <p>Although the COMPANY only creates links to external sites of extreme trust, if the user accesses an external site, the COMPANY has no responsibility for the medium, being merely an indication of content supplementation, leaving the same responsible for access, as well as for any actions they may undertake on this site.</p>
+      <p>In the event that there are eventual judicial conflicts between the VISITOR and the COMPANY, the chosen forum for the appropriate action will be that of the COMPANY's jurisdiction, even if there is another more privileged.</p>
+      <p>This Term of Use is valid as of November 26, 2025.</p>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="muted">
+        © <span id="year"></span> SmartWork AI. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
