@@ -1,118 +1,80 @@
-
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<title>FOCUS AI – Fast Upgrade</title>
-
+<title>Viral Code AI – Algorithm Mastery</title>
 <style>
-:root{
-  --bg:#05070b; --card:#0d1118; --text:#e8eef7; --muted:#a7b4c8;
-  --brand:#28c84a; --brand-dark:#0e8f2a; --accent:#30e0ff; --warn:#ff4747;
+:root {
+  --bg: #05070b;
+  --card: #0d1118;
+  --text: #e8eef7;
+  --muted: #a7b4c8;
+  --brand: #28c84a; /* Mantido verde para indicar "sinal verde/sucesso" */
+  --brand-dark: #0e8f2a;
+  --accent: #30e0ff;
+  --warn: #ff4747;
 }
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:500 16px/1.5 "Inter",system-ui}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 500 16px/1.5 "Inter", system-ui; padding-bottom: 100px; }
 
 /* Layout */
-.wrap{max-width:960px;margin:0 auto;padding:100px 20px calc(140px + env(safe-area-inset-bottom))}
-.card{background:var(--card);padding:26px;border-radius:20px;border:1px solid rgba(255,255,255,.06);box-shadow:0 0 38px rgba(0,0,0,.45)}
+.wrap { max-width: 960px; margin: 0 auto; padding: 100px 20px 40px; }
+.card { background: var(--card); padding: 26px; border-radius: 20px; border: 1px solid rgba(255,255,255,.06); box-shadow: 0 0 38px rgba(0,0,0,.45); }
 
-h1{margin:0 0 10px;font-size:28px;font-weight:900}
-.sub{color:var(--muted);font-size:16px;line-height:1.45}
+h1 { margin: 0 0 10px; font-size: 28px; font-weight: 900; line-height: 1.2; }
+.sub { color: var(--muted); font-size: 16px; line-height: 1.45; }
 
-.blackline{
-  color:#e8eef7;
-  font-size:17px;
-  margin:12px 0 18px;
-  line-height:1.45;
-  font-weight:700;
-}
+.blackline { color: #e8eef7; font-size: 17px; margin: 12px 0 18px; line-height: 1.45; font-weight: 700; }
 
 /* Badge */
-.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(40,200,74,.15);padding:6px 14px;border-radius:999px;margin-bottom:12px;font-weight:700;color:#caffd6;font-size:14px}
+.badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(40,200,74,.15); padding: 6px 14px; border-radius: 999px; margin-bottom: 12px; font-weight: 700; color: #caffd6; font-size: 14px; }
 
 /* Panel */
-.panel{background:#0b121b;padding:20px;border-radius:16px;border:1px solid rgba(255,255,255,.06);margin-top:20px}
+.panel { background: #0b121b; padding: 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,.06); margin-top: 20px; }
 
 /* Bullet list */
-ul.k{list-style:none;margin:10px 0 0;padding:0}
-ul.k li{display:flex;gap:10px;margin:12px 0;color:#d7e5ff;font-size:15px}
-.check{color:#28c84a;font-size:18px}
+ul.k { list-style: none; margin: 10px 0 0; padding: 0; }
+ul.k li { display: flex; gap: 10px; margin: 12px 0; color: #d7e5ff; font-size: 15px; align-items: flex-start; }
+.check { color: #28c84a; font-size: 18px; flex-shrink: 0; margin-top: 2px; }
 
 /* Preview button */
-.fake-button{
-  display:flex;justify-content:center;align-items:center;
-  padding:14px 22px;border-radius:14px;background:#28c84a;
-  color:white;font-size:17px;font-weight:900;margin-bottom:14px;
-  box-shadow:0 10px 26px rgba(40,200,74,.45), inset 0 -2px rgba(0,0,0,.25)
-}
-.note{text-align:center;color:#8aa0b6;font-size:13px;margin-bottom:14px}
+.fake-button { display: flex; justify-content: center; align-items: center; padding: 14px 22px; border-radius: 14px; background: #28c84a; color: white; font-size: 17px; font-weight: 900; margin-bottom: 14px; box-shadow: 0 10px 26px rgba(40,200,74,.45), inset 0 -2px rgba(0,0,0,.25); }
+.note { text-align: center; color: #8aa0b6; font-size: 13px; margin-bottom: 14px; }
 
 /* Warning box */
-.warn{
-  background:#1a0f0f;border:1px solid rgba(255,71,71,.35);
-  color:#ffbcbc;padding:16px;border-radius:14px;margin-top:12px;font-size:15px;font-weight:600
-}
+.warn { background: #1a0f0f; border: 1px solid rgba(255,71,71,.35); color: #ffbcbc; padding: 16px; border-radius: 14px; margin-top: 12px; font-size: 15px; font-weight: 600; }
 
 /* Bottom CTA */
-.cta{
-  position:fixed;left:0;right:0;bottom:0;padding:16px 20px calc(16px + env(safe-area-inset-bottom));
-  background:linear-gradient(180deg,rgba(0,0,0,0),#000 45%);border-top:1px solid rgba(255,255,255,.08);
-  z-index:9;
-}
-.btn{
-  display:block;
-  width:100%;padding:16px;border-radius:14px;background:linear-gradient(180deg,var(--brand),var(--brand-dark));
-  color:white;font-size:22px;font-weight:900;cursor:pointer;letter-spacing:.3px;
-  box-shadow:0 14px 40px rgba(40,200,74,.45), inset 0 -2px rgba(0,0,0,.3);
-  animation:pulse 1.35s infinite ease-in-out;
-  text-align:center;
-  text-decoration:none;
-}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.cta { position: fixed; left: 0; right: 0; bottom: 0; padding: 16px 20px calc(16px + env(safe-area-inset-bottom)); background: linear-gradient(180deg,rgba(0,0,0,0),#000 45%); border-top: 1px solid rgba(255,255,255,.08); z-index: 9; }
+.btn { display: block; width: 100%; padding: 16px; border-radius: 14px; background: linear-gradient(180deg, var(--brand), var(--brand-dark)); color: white; font-size: 22px; font-weight: 900; cursor: pointer; letter-spacing: .3px; box-shadow: 0 14px 40px rgba(40,200,74,.45), inset 0 -2px rgba(0,0,0,.3); animation: pulse 1.35s infinite ease-in-out; text-align: center; text-decoration: none; }
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.02); } }
 
 /* Top bar */
-.topbar{
-  position:fixed;top:0;left:0;right:0;padding:10px 18px;background:#0a0e14;border-bottom:1px solid rgba(255,255,255,.08);
-  z-index:9
-}
-.lockmsg{display:flex;align-items:center;gap:12px;font-weight:800;color:#d6ebff}
-.lock{display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:5px;background:rgba(47,197,255,.18);border:1px solid rgba(47,197,255,.35)}
-.timer{font-weight:900;color:#ffdca8;font-size:18px}
+.topbar { position: fixed; top: 0; left: 0; right: 0; padding: 10px 18px; background: #0a0e14; border-bottom: 1px solid rgba(255,255,255,.08); z-index: 9; }
+.lockmsg { display: flex; align-items: center; gap: 12px; font-weight: 800; color: #d6ebff; font-size: 14px; }
+.lock { display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 5px; background: rgba(47,197,255,.18); border: 1px solid rgba(47,197,255,.35); flex-shrink: 0; }
+.timer { font-weight: 900; color: #ffdca8; font-size: 18px; margin-left: auto; }
 
-.progress{height:10px;background:#0c1118;border-radius:999px;margin-top:8px;border:1px solid rgba(255,255,255,.06);overflow:hidden}
-.bar{height:100%;width:0%;background:linear-gradient(90deg,#28c84a,#56ff7b);box-shadow:0 0 16px rgba(40,200,74,.6);transition:width .35s}
+.progress { height: 10px; background: #0c1118; border-radius: 999px; margin-top: 8px; border: 1px solid rgba(255,255,255,.06); overflow: hidden; }
+.bar { height: 100%; width: 0%; background: linear-gradient(90deg, #28c84a, #56ff7b); box-shadow: 0 0 16px rgba(40,200,74,.6); transition: width .35s; }
 
 /* POPUPS */
-.popup{
-  position:fixed;left:20px;bottom:120px;
-  background:#111922;color:white;padding:14px 16px;border-radius:12px;
-  border:1px solid rgba(255,255,255,.08);
-  box-shadow:0 8px 18px rgba(0,0,0,.45);
-  font-size:14px;font-weight:500;opacity:0;transform:translateY(20px);transition:.4s;
-  z-index:999;
-  display:flex;gap:10px;align-items:center;
-}
-.popup.show{opacity:1;transform:translateY(0)}
-.popup img{width:34px;height:34px;border-radius:50%}
+.popup { position: fixed; left: 20px; bottom: 130px; background: #111922; color: white; padding: 14px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,.08); box-shadow: 0 8px 18px rgba(0,0,0,.45); font-size: 14px; font-weight: 500; opacity: 0; transform: translateY(20px); transition: .4s; z-index: 999; display: flex; gap: 10px; align-items: center; max-width: 80%; }
+.popup.show { opacity: 1; transform: translateY(0); }
+.popup img { width: 34px; height: 34px; border-radius: 50%; }
 
 /* link pequeno de recusa */
-.cta-note a{
-  color:#ffffffb7;
-  font-size:14px;
-  text-decoration:none;
-}
-.cta-note a:hover{
-  text-decoration:underline;
+.cta-note a { color: #ffffff70; font-size: 13px; text-decoration: none; }
+.cta-note a:hover { text-decoration: underline; color: #fff; }
+
+/* Mobile adjustments */
+@media(max-width: 400px) {
+  h1 { font-size: 24px; }
+  .btn { font-size: 19px; }
 }
 </style>
-<script
-  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-  data-utmify-prevent-subids
-  async
-  defer
-></script>
+<script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-subids async defer></script>
 </head>
 <body>
 
@@ -120,49 +82,65 @@ ul.k li{display:flex;gap:10px;margin:12px 0;color:#d7e5ff;font-size:15px}
 <div class="topbar">
   <div class="lockmsg">
     <span class="lock">🔒</span>
-    <span>Focus Mode unlocks after the next step.</span>
+    <span>Algorithm Data unlocks next.</span>
+    <div class="timer" id="timer">01:00</div>
   </div>
-  <div class="timer" id="timer">01:00</div>
   <div class="progress"><div class="bar" id="barTop"></div></div>
 </div>
 
 <!-- CONTENT -->
 <div class="wrap">
   <div class="card">
-    <div class="badge">Fast Upgrade Recommended</div>
+    <div class="badge">Strategic Upgrade Recommended</div>
 
-    <h1>FOCUS AI — Unlock Hyper Performance Mode</h1>
-
-    <!-- NEW U.S. ENGLISH COPY -->
+    <h1>VIRAL CODE AI — Master the Algorithm</h1>
+    
     <p class="blackline">
-      Unlock restricted AMZ protocols that boost your results by up to <b>3×</b> — allowing you to seize opportunities before anyone else can react.
+      Stop guessing. Unlock the exact data-driven protocols to <b>dominate reach</b> across every platform and attract your ideal viewers on autopilot.
     </p>
 
     <!-- BENEFITS PANEL -->
     <div class="panel">
-      <h3 style="margin:0 0 10px;font-size:20px;font-weight:800;color:#e8eef7;">
-        🔥 What You Unlock With FOCUS AI:
+      <h3 style="margin:0 0 10px; font-size:18px; font-weight:800; color:#e8eef7;">
+        🔥 What You Unlock With VIRAL CODE:
       </h3>
 
       <ul class="k">
-        <li><span class="check">✔</span><span><b>Up to 10× more real performance</b> inside the ecosystem</span></li>
-        <li><span class="check">✔</span><span><b>Absolute focus</b> on what delivers immediate results</span></li>
-        <li><span class="check">✔</span><span>Elite <b>AI protocols</b> accessed only by the top 1%</span></li>
-        <li><span class="check">✔</span><span><b>VIP access</b> to our system + priority premium support</span></li>
-        <li><span class="check">✔</span><span><b>25× acceleration</b> in performance, clarity, and execution</span></li>
+        <li>
+          <span class="check">✔</span>
+          <span><b>Algorithm Decoded:</b> Weekly updates on platform changes so you never lose reach.</span>
+        </li>
+        <li>
+          <span class="check">✔</span>
+          <span><b>Precision Analytics:</b> Learn to read the data that actually matters to scale without guesswork.</span>
+        </li>
+        <li>
+          <span class="check">✔</span>
+          <span><b>Organic Explosion:</b> Proven methods to multiply your reach without spending $1 on ads.</span>
+        </li>
+        <li>
+          <span class="check">✔</span>
+          <span><b>Campaign Breakdowns:</b> Access our "What's Working Now" case studies every week.</span>
+        </li>
+        <li>
+          <span class="check">✔</span>
+          <span><b>Strategic Distribution:</b> Stop posting blindly—put your content where your buyers are.</span>
+        </li>
       </ul>
     </div>
 
     <!-- NEXT PAGE ACTION -->
-    <h3 style="text-align:center;margin-top:20px;color:#a8b2c3;font-weight:800">Next page required action:</h3>
+    <h3 style="text-align:center; margin-top:24px; color:#a8b2c3; font-weight:800; font-size: 16px;">
+      Next page required action:
+    </h3>
 
-    <div class="fake-button">Confirm new purchase ➜</div>
+    <div class="fake-button">Confirm Access to Viral Code ➜</div>
     <p class="note">*Preview only. You must confirm on the next page.</p>
 
     <!-- WARNING -->
     <div class="warn">
-      ⚠ <b>IMPORTANT:</b> You MUST tap “Confirm new purchase” on the next page to activate Focus AI.<br>
-      If you do NOT confirm, this upgrade will be permanently lost.
+      ⚠ <b>IMPORTANT:</b> You MUST tap “Unlock Viral Code AI” below to secure your spot in the Weekly Update list.<br>
+      If you skip this, you will miss out on the latest algorithm changes.
     </div>
   </div>
 </div>
@@ -175,63 +153,58 @@ ul.k li{display:flex;gap:10px;margin:12px 0;color:#d7e5ff;font-size:15px}
 
 <!-- CTA -->
 <div class="cta">
-  <!-- BOTÃO DE SIM COMO LINK REAL -->
-  <a
-    class="btn"
-    id="go"
-    href="https://go.centerpag.com/PPU38CQ48AI?upsell=true"
-    target="_top"
-  >
-    Activate Focus AI Now ➜
+  <!-- BOTÃO DE SIM -->
+  <a class="btn" id="go" href="https://go.centerpag.com/PPU38CQ335I?upsell=true" target="_top">
+    Unlock Viral Code AI Now ➜
   </a>
 
-  <!-- Botão / link pequeno de NÃO -->
-  <div class="note cta-note" style="margin-top:10px;">
-    <a href="" target="_top">I do not accept this offer.</a>
+  <!-- Link de recusa -->
+  <div class="note cta-note" style="margin-top:12px;">
+    <a href="#" target="_top">No thanks, I prefer guessing my content strategy.</a>
   </div>
-
-  <div class="note"></div>
 </div>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   // Elements
-  const bar   = document.getElementById("barTop");
+  const bar = document.getElementById("barTop");
   const timer = document.getElementById("timer");
   const popup = document.getElementById("popup");
-  const msg   = document.getElementById("msg");
-  const pfp   = document.getElementById("pfp");
+  const msg = document.getElementById("msg");
+  const pfp = document.getElementById("pfp");
   const goBtn = document.getElementById("go");
 
-  // Progress
+  // Progress Bar Simulation
   let p = 0;
-  const hold = 92;
+  const hold = 94; // Stops just before 100 to create tension
   if (bar) {
     setInterval(() => {
       if (p < hold) {
-        p += Math.max(1, Math.round((hold - p) * 0.2));
+        // Slows down as it gets higher
+        p += Math.max(1, Math.round((hold - p) * 0.15));
         bar.style.width = p + "%";
       }
-    }, 300);
+    }, 400);
   }
 
-  // Countdown
-  let t = 60;
+  // Countdown Timer
+  let t = 60; // seconds
   if (timer) {
     timer.textContent = `00:${String(t).padStart(2, "0")}`;
-    setInterval(() => {
+    const cd = setInterval(() => {
       t--;
       if (t <= 0) {
         timer.textContent = "00:00";
+        clearInterval(cd);
         return;
       }
       timer.textContent = `00:${String(t).padStart(2, "0")}`;
     }, 1000);
   }
 
-  // POPUPS
-  const names = ["Michael R.","Ashley D.","Kevin T.","Lauren B.","Jason W.","Emily S.","Daniel K.","Sarah H.","Chris P.","Amanda L."];
-
+  // Social Proof Popups
+  const names = ["Alex M.", "Sarah J.", "David K.", "Jessica R.", "Ryan P.", "Emily W.", "Carlos D.", "Sophie L."];
+  
   function randomPFP() {
     const id = Math.floor(Math.random() * 70) + 1;
     return `https://randomuser.me/api/portraits/${Math.random() > 0.5 ? "men" : "women"}/${id}.jpg`;
@@ -240,18 +213,23 @@ document.addEventListener("DOMContentLoaded", () => {
   function showPopup() {
     if (!popup || !msg || !pfp) return;
     const name = names[Math.floor(Math.random() * names.length)];
-    msg.textContent = `${name} just activated Focus AI`;
+    // Tailored message for this product
+    msg.innerHTML = `<b>${name}</b> just unlocked<br>Viral Code AI Protocols`;
     pfp.src = randomPFP();
+    
     popup.classList.add("show");
-    setTimeout(() => popup.classList.remove("show"), 3500);
+    setTimeout(() => popup.classList.remove("show"), 4000);
   }
-  setInterval(showPopup, 6000);
-  setTimeout(showPopup, 2000);
 
-  // Clique no botão SIM: só anima a barra, o redirect é pelo href
+  // Start popup loop
+  setTimeout(showPopup, 2500); // First one after 2.5s
+  setInterval(showPopup, 7000); // Then every 7s
+
+  // Button Click Effect
   if (goBtn && bar) {
     goBtn.addEventListener("click", () => {
       bar.style.width = "100%";
+      // Here you would normally handle the redirect logic
     });
   }
 });
