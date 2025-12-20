@@ -49,10 +49,11 @@
       box-shadow: var(--shadow);
       border: 0;
       cursor: pointer;
-      transition: filter 0.2s;
+      transition: filter 0.2s, transform 0.2s;
       text-decoration: none;
+      font-size: 1.1rem;
     }
-    .btn:hover { filter: brightness(1.1); }
+    .btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
     .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; justify-content: center; margin-bottom: 40px; }
     .logo-mark {
       inline-size: 40px;
@@ -160,17 +161,24 @@
       font-size: 1.2rem;
       font-weight: 700;
     }
+    .step-content { flex: 1; }
     .step-content h3 { margin: 0 0 10px; font-size: 1.3rem; }
-    .access-details {
+    
+    .download-box {
       background: rgba(0,0,0,.3);
       border: 1px dashed rgba(255,255,255,.15);
       padding: 20px;
       border-radius: 12px;
       margin-top: 16px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
-    .access-details div { margin-bottom: 8px; }
-    .access-details strong { color: var(--brand-2); }
+    .file-icon {
+      width: 40px;
+      height: 40px;
+      color: var(--brand-2);
+    }
 
     footer { padding: 40px 0; color: var(--muted); text-align: center; margin-top: auto; font-size: 0.9rem; }
     .disclaimer { font-size: 0.75rem; opacity: 0.6; max-width: 600px; margin: 20px auto 0; line-height: 1.4; }
@@ -183,6 +191,7 @@
       .step-label { font-size: 0.8rem; }
       .step-item { flex-direction: column; gap: 12px; }
       .step-number { margin-bottom: 4px; }
+      .download-box { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
@@ -196,7 +205,7 @@
 
       <div class="card">
         <h1>Order Confirmed!</h1>
-        <p class="lead">Congratulations on your decision to work smarter. Your access to <strong>SmartWork AI</strong> is being released.</p>
+        <p class="lead">Congratulations on your decision to work smarter. Your digital copy of <strong>SmartWork AI</strong> is ready for immediate download.</p>
 
         <!-- Progress Bar -->
         <div class="progress-container">
@@ -208,7 +217,7 @@
           </div>
           <div class="progress-step completed">
             <div class="step-icon">✓</div>
-            <div class="step-label">Access Generated</div>
+            <div class="step-label">Ready to Download</div>
           </div>
           <div class="progress-step active">
             <div class="step-icon">✓</div>
@@ -221,27 +230,36 @@
             <div class="step-number">1</div>
             <div class="step-content">
               <h3>Check Your Email</h3>
-              <p class="muted">We just sent an email with your access details. Look for an email with the subject line "Your Access to SmartWork AI".</p>
+              <p class="muted">We just sent an email with your purchase receipt and a backup download link. Look for an email with the subject line "Your SmartWork AI Guide".</p>
               <p style="font-size: 0.9rem; color: var(--warn, #ffd166);"><strong>Important:</strong> If you don't find it in your inbox, please check your <strong>Spam</strong> or <strong>Promotions</strong> folder.</p>
             </div>
           </div>
           <div class="step-item">
             <div class="step-number">2</div>
             <div class="step-content">
-              <h3>Access the Member Area</h3>
-              <p class="muted">Use the details below to log in to the platform and start your training immediately.</p>
-              <div class="access-details">
-                <div>Access Link: <strong>members.constantevolution.site</strong></div>
-                <div>Email: <strong>(The same email used at checkout)</strong></div>
-                <div>Default Password: <strong>student123</strong></div>
+              <h3>Download Your Guide</h3>
+              <p class="muted">You don't need to wait! Download the complete PDF guide directly to your device right now and start reading.</p>
+              
+              <div class="download-box">
+                <svg class="file-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                <div style="text-align: left; width: 100%;">
+                  <div style="color: #fff; font-weight: 600;">SmartWork AI.pdf</div>
+                  <div style="font-size: 0.8rem; color: var(--muted);">Intelligent Automation Guide</div>
+                </div>
               </div>
-              <a href="https://members.constantevolution.site" target="_blank" class="btn" style="width: 100%; margin-top: 24px;">Access Member Area</a>
+
+              <!-- DOWNLOAD LINK - Ensure 'SmartWork AI.pdf' is in the same folder -->
+              <a href="SmartWork AI.pdf" download="SmartWork AI.pdf" class="btn" style="width: 100%; margin-top: 24px;">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                Download PDF Now
+              </a>
+
             </div>
           </div>
         </div>
 
         <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.08);">
-          <p class="muted" style="margin-bottom: 10px;">Need help or didn't receive the email?</p>
+          <p class="muted" style="margin-bottom: 10px;">Need help with the download?</p>
           <p style="margin: 0;"><a href="mailto:fac.seveninfo@gmail.com" style="color: var(--brand-2);">Contact our support team</a>.</p>
         </div>
 
