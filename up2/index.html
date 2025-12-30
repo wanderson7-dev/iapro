@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -40,13 +39,6 @@ ul.k{list-style:none;margin:10px 0 0;padding:0}
 ul.k li{display:flex;gap:10px;margin:12px 0;color:#d7e5ff;font-size:15px}
 .check{color:#28c84a;font-size:18px}
 
-/* Preview button */
-.fake-button{
-  display:flex;justify-content:center;align-items:center;
-  padding:14px 22px;border-radius:14px;background:#28c84a;
-  color:white;font-size:17px;font-weight:900;margin-bottom:14px;
-  box-shadow:0 10px 26px rgba(40,200,74,.45), inset 0 -2px rgba(0,0,0,.25)
-}
 .note{text-align:center;color:#8aa0b6;font-size:13px;margin-bottom:14px}
 
 /* Warning box */
@@ -55,22 +47,19 @@ ul.k li{display:flex;gap:10px;margin:12px 0;color:#d7e5ff;font-size:15px}
   color:#ffbcbc;padding:16px;border-radius:14px;margin-top:12px;font-size:15px;font-weight:600
 }
 
-/* Bottom CTA */
-.cta{
-  position:fixed;left:0;right:0;bottom:0;padding:16px 20px calc(16px + env(safe-area-inset-bottom));
-  background:linear-gradient(180deg,rgba(0,0,0,0),#000 45%);border-top:1px solid rgba(255,255,255,.08);
-  z-index:9;
+/* Monetizze Upsell Iframe Styling */
+.iframeUpsell {
+  width: 100% !important;
+  border: none !important;
+  min-height: 450px;
+  background: transparent;
 }
-.btn{
-  display:block;
-  width:100%;padding:16px;border-radius:14px;background:linear-gradient(180deg,var(--brand),var(--brand-dark));
-  color:white;font-size:22px;font-weight:900;cursor:pointer;letter-spacing:.3px;
-  box-shadow:0 14px 40px rgba(40,200,74,.45), inset 0 -2px rgba(0,0,0,.3);
-  animation:pulse 1.35s infinite ease-in-out;
-  text-align:center;
-  text-decoration:none;
+
+/* Bottom CTA Area */
+.cta-container {
+  margin-top: 30px;
+  text-align: center;
 }
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 
 /* Top bar */
 .topbar{
@@ -86,7 +75,7 @@ ul.k li{display:flex;gap:10px;margin:12px 0;color:#d7e5ff;font-size:15px}
 
 /* POPUPS */
 .popup{
-  position:fixed;left:20px;bottom:120px;
+  position:fixed;left:20px;bottom:40px;
   background:#111922;color:white;padding:14px 16px;border-radius:12px;
   border:1px solid rgba(255,255,255,.08);
   box-shadow:0 8px 18px rgba(0,0,0,.45);
@@ -97,15 +86,6 @@ ul.k li{display:flex;gap:10px;margin:12px 0;color:#d7e5ff;font-size:15px}
 .popup.show{opacity:1;transform:translateY(0)}
 .popup img{width:34px;height:34px;border-radius:50%}
 
-/* link pequeno de recusa */
-.cta-note a{
-  color:#ffffffb7;
-  font-size:14px;
-  text-decoration:none;
-}
-.cta-note a:hover{
-  text-decoration:underline;
-}
 </style>
 <script
   src="https://cdn.utmify.com.br/scripts/utms/latest.js"
@@ -133,7 +113,6 @@ ul.k li{display:flex;gap:10px;margin:12px 0;color:#d7e5ff;font-size:15px}
 
     <h1>Visuals Advantage — Unlock Hyper Performance Mode</h1>
 
-    <!-- NEW U.S. ENGLISH COPY -->
     <p class="blackline">
       Unlock restricted AMZ protocols that boost your results by up to <b>3×</b> — allowing you to seize opportunities before anyone else can react.
     </p>
@@ -153,15 +132,19 @@ ul.k li{display:flex;gap:10px;margin:12px 0;color:#d7e5ff;font-size:15px}
       </ul>
     </div>
 
-    <!-- NEXT PAGE ACTION -->
-    <h3 style="text-align:center;margin-top:20px;color:#a8b2c3;font-weight:800">Next page required action:</h3>
-
-    <p class="note">*Preview only. You must confirm on the next page.</p>
+    <!-- ACTION AREA -->
+    <div class="cta-container">
+      <p class="note">Please confirm your selection below to proceed:</p>
+      
+      <!-- Monetizze Upsell Component -->
+      <script type="text/javascript" src="https://app.monetizze.com.br/upsell_incorporado.php"></script>
+      <iframe class="iframeUpsell" data-chave="7eb7644e615fbef5944b9e6f78b8674b"></iframe>
+    </div>
 
     <!-- WARNING -->
     <div class="warn">
-      ⚠ <b>IMPORTANT:</b> You MUST tap “Confirm new purchase” on the next page to activate Focus AI.<br>
-      If you do NOT confirm, this upgrade will be permanently lost.
+      ⚠ <b>IMPORTANT:</b> You MUST confirm the choice above to activate Focus AI.<br>
+      If you do NOT take action, this specific upgrade protocol will be permanently restricted.
     </div>
   </div>
 </div>
@@ -172,26 +155,6 @@ ul.k li{display:flex;gap:10px;margin:12px 0;color:#d7e5ff;font-size:15px}
   <span id="msg"></span>
 </div>
 
-<!-- CTA -->
-<div class="cta">
-  <!-- BOTÃO DE SIM COMO LINK REAL -->
-  <a
-    class="btn"
-    id="go"
-    href="https://go.centerpag.com/PPU38CQ48AL?upsell=true"
-    target="_top"
-  >
-    Activate Visuals Advantage Now ➜
-  </a>
-
-  <!-- Botão / link pequeno de NÃO -->
-  <div class="note cta-note" style="margin-top:10px;">
-    <a href="" target="_top">I do not accept this offer.</a>
-  </div>
-
-  <div class="note"></div>
-</div>
-
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   // Elements
@@ -200,9 +163,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const popup = document.getElementById("popup");
   const msg   = document.getElementById("msg");
   const pfp   = document.getElementById("pfp");
-  const goBtn = document.getElementById("go");
 
-  // Progress
+  // Progress Bar Animation
   let p = 0;
   const hold = 92;
   if (bar) {
@@ -214,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 300);
   }
 
-  // Countdown
+  // Countdown Timer
   let t = 60;
   if (timer) {
     timer.textContent = `00:${String(t).padStart(2, "0")}`;
@@ -228,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1000);
   }
 
-  // POPUPS
+  // POPUP NOTIFICATIONS LOGIC
   const names = ["Michael R.","Ashley D.","Kevin T.","Lauren B.","Jason W.","Emily S.","Daniel K.","Sarah H.","Chris P.","Amanda L."];
 
   function randomPFP() {
@@ -244,15 +206,9 @@ document.addEventListener("DOMContentLoaded", () => {
     popup.classList.add("show");
     setTimeout(() => popup.classList.remove("show"), 3500);
   }
+  
   setInterval(showPopup, 6000);
   setTimeout(showPopup, 2000);
-
-  // Clique no botão SIM: só anima a barra, o redirect é pelo href
-  if (goBtn && bar) {
-    goBtn.addEventListener("click", () => {
-      bar.style.width = "100%";
-    });
-  }
 });
 </script>
 
