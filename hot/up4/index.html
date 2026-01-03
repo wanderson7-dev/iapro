@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="../up4/index.html">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upsell 4 | Wellness Consistency Blueprint</title>
+    <style>
+        :root {
+            --bg0: #070A12;
+            --bg1: #0B1022;
+            --card: rgba(255, 255, 255, .07);
+            --card2: rgba(255, 255, 255, .10);
+            --line: rgba(255, 255, 255, .12);
+            --txt: rgba(255, 255, 255, .92);
+            --muted: rgba(255, 255, 255, .72);
+            --muted2: rgba(255, 255, 255, .56);
+            --accent: #7C5CFF;
+            --accent2: #00E7B7;
+            --warn: #FFB020;
+            --ok: #3CFFB2;
+            --shadow: 0 20px 70px rgba(0, 0, 0, .55);
+            --shadow2: 0 14px 50px rgba(0, 0, 0, .45);
+            --radius: 22px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+        }
+
+        body {
+            color: var(--txt);
+            background: radial-gradient(1200px 800px at 10% 10%, rgba(124, 92, 255, .18), transparent 60%),
+                radial-gradient(900px 700px at 90% 15%, rgba(0, 231, 183, .14), transparent 55%),
+                radial-gradient(700px 600px at 50% 90%, rgba(255, 176, 32, .10), transparent 60%),
+                linear-gradient(180deg, var(--bg0), var(--bg1) 70%, #060816);
+            overflow-x: hidden;
+        }
+
+        /* Blobs animados de fundo */
+        .blob {
+            position: absolute;
+            inset: auto;
+            width: 520px;
+            height: 520px;
+            filter: blur(32px);
+            opacity: .35;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 30%, rgba(124, 92, 255, .95), rgba(0, 231, 183, .55), rgba(255, 176, 32, .20));
+            animation: floaty 16s ease-in-out infinite;
+            pointer-events: none;
+            transform: translate3d(0, 0, 0);
+            z-index: 0;
+        }
+
+        .blob.b1 { top: -180px; left: -180px; animation-delay: -2s; }
+        .blob.b2 { top: 120px; right: -240px; width: 620px; height: 620px; animation-delay: -7s; opacity: .26; }
+        .blob.b3 { bottom: -260px; left: 20%; width: 720px; height: 720px; animation-delay: -11s; opacity: .22; }
+
+        @keyframes floaty {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -18px) scale(1.06); }
+        }
+
+        a { color: inherit; text-decoration: none; }
+        .wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 26px 18px 72px; }
+
+        .topbar {
+            display: flex; align-items: center; justify-content: space-between; gap: 12px;
+            padding: 10px 12px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .04);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, .35);
+            position: sticky; top: 12px;
+            z-index: 10;
+        }
+
+        .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .2px; }
+        .dot {
+            width: 11px; height: 11px; border-radius: 999px;
+            background: radial-gradient(circle at 30% 30%, var(--accent), var(--accent2));
+            box-shadow: 0 0 0 6px rgba(124, 92, 255, .12), 0 0 0 12px rgba(0, 231, 183, .08);
+        }
+
+        .nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .chip { padding: 8px 10px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255, 255, 255, .03); font-size: 12.5px; color: var(--muted); transition: .2s ease; }
+        .chip:hover { transform: translateY(-1px); background: rgba(255, 255, 255, .06); color: var(--txt); }
+
+        .hero { margin-top: 22px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 18px; align-items: stretch; }
+        @media (max-width: 920px) { .hero { grid-template-columns: 1fr; } }
+
+        .card {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .04));
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
+            overflow: hidden;
+        }
+
+        .heroMain { padding: 26px; position: relative; }
+        .pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid rgba(124, 92, 255, .35); background: rgba(124, 92, 255, .10); color: rgba(255, 255, 255, .86); font-size: 12.5px; }
+        
+        h1 { margin: 14px 0 10px; font-size: clamp(28px, 3.8vw, 44px); line-height: 1.06; letter-spacing: -0.6px; }
+        .sub { color: var(--muted); font-size: 15.5px; line-height: 1.55; max-width: 62ch; }
+        .hl { background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+        .bullets { margin: 18px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px; }
+        @media (max-width: 620px) { .bullets { grid-template-columns: 1fr; } }
+
+        .b { display: flex; gap: 10px; align-items: flex-start; padding: 12px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, .10); background: rgba(0, 0, 0, .20); transition: .2s ease; }
+        .b:hover { transform: translateY(-2px); background: rgba(0, 0, 0, .28); }
+        .ico { width: 26px; height: 26px; border-radius: 10px; background: rgba(0, 231, 183, .12); border: 1px solid rgba(0, 231, 183, .25); display: grid; place-items: center; flex: 0 0 auto; margin-top: 1px; }
+        .b strong { display: block; font-size: 13.5px; margin-bottom: 2px; }
+        .b span { display: block; font-size: 12.5px; color: var(--muted2); line-height: 1.45; }
+
+        .ctaRow { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; align-items: center; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 24px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, .14); background: rgba(255, 255, 255, .06); color: var(--txt); font-weight: 650; font-size: 14px; cursor: pointer; transition: .18s ease; box-shadow: 0 16px 40px rgba(0, 0, 0, .35); }
+        .btn:hover { transform: translateY(-2px); background: rgba(255, 255, 255, .10); }
+        .btn.primary { background: linear-gradient(135deg, rgba(124, 92, 255, .95), rgba(0, 231, 183, .85)); border: 0; color: #061019; box-shadow: 0 22px 60px rgba(124, 92, 255, .22); }
+        .btn.primary:hover { filter: brightness(1.1); transform: translateY(-2px) scale(1.02); }
+
+        .heroSide { padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+        .mini { padding: 14px; border-radius: 18px; border: 1px solid rgba(255, 255, 255, .12); background: rgba(0, 0, 0, .18); box-shadow: var(--shadow2); }
+        .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        .kpi { border-radius: 16px; border: 1px solid rgba(255, 255, 255, .12); background: rgba(255, 255, 255, .05); padding: 12px; position: relative; overflow: hidden; }
+        .kpi .n { font-size: 24px; font-weight: 800; color: var(--accent2); }
+        .kpi .t { font-size: 11px; color: var(--muted2); margin-top: 2px; }
+
+        .list { margin: 10px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+        .li { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, .10); background: rgba(255, 255, 255, .04); }
+        .tick { width: 18px; height: 18px; border-radius: 999px; background: rgba(60, 255, 178, .12); border: 1px solid rgba(60, 255, 178, .25); display: grid; place-items: center; flex: 0 0 auto; margin-top: 2px; }
+        .li div { font-size: 12.8px; color: var(--muted); line-height: 1.45; }
+
+        .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        @media (max-width: 920px) { .grid3 { grid-template-columns: 1fr; } }
+
+        .feat { padding: 16px; border-radius: 18px; border: 1px solid var(--line); background: rgba(0, 0, 0, .16); transition: .2s ease; position: relative; overflow: hidden; }
+        .feat:hover { transform: translateY(-2px); background: rgba(0, 0, 0, .22); }
+        .feat h4 { margin: 0 0 6px; font-size: 14.5px; color: var(--accent2); }
+        .feat p { margin: 0; color: var(--muted); font-size: 12.8px; line-height: 1.55; }
+
+        .widgetWrap { padding: 18px; border-radius: 18px; border: 1px solid rgba(255, 255, 255, .14); background: rgba(0, 0, 0, .22); box-shadow: var(--shadow2); }
+        
+        .reveal { opacity: 0; transform: translateY(14px); transition: .55s ease; }
+        .reveal.in { opacity: 1; transform: translateY(0); }
+
+        footer { margin-top: 40px; color: var(--muted2); font-size: 12px; text-align: center; padding: 18px; }
+    </style>
+    
+    <script>
+        !function() {
+            document.addEventListener("DOMContentLoaded", function() {
+                const query = new URLSearchParams(window.location.search);
+                document.querySelectorAll("a").forEach(function(a) {
+                    try {
+                        const url = new URL(a.href);
+                        query.forEach(function(value, key) {
+                            if (!url.searchParams.has(key)) url.searchParams.set(key, value);
+                        });
+                        a.href = url.toString();
+                    } catch(e) {}
+                });
+            });
+        }();
+    </script>
+</head>
+<body>
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+
+    <div class="wrap">
+        <div class="topbar">
+            <div class="brand">
+                <span class="dot"></span>
+                <span>Wellness Consistency Blueprint</span>
+            </div>
+            <div class="nav">
+                <a class="chip" href="#whatsinside">What’s Inside</a>
+                <a class="chip" href="#checkout">Checkout</a>
+                <a class="chip" href="#faq">FAQ</a>
+            </div>
+        </div>
+
+        <section class="hero">
+            <div class="card heroMain reveal">
+                <div class="heroMain">
+                    <div class="pill">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 2l2.2 6.6H21l-5.4 3.9 2.1 6.5L12 15.4 6.3 19l2.1-6.5L3 8.6h6.8L12 2z" stroke-width="2"/>
+                        </svg>
+                        UPSELL 4 • Limited Consistency Add-on
+                    </div>
+
+                    <h1>Make healthy habits <span class="hl">automatic</span>—even when motivation drops.</h1>
+                    <p class="sub">
+                        Build a full “habit system” to design a routine that fits your reality. 
+                        Repeatable actions that support energy, focus, and long-term results.
+                    </p>
+
+                    <div class="bullets">
+                        <div class="b">
+                            <div class="ico">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                    <path d="M12 21s7-4.4 7-10.5S15.9 3 12 6.2 5 7.3 5 10.5 12 21 12 21z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Stress → Calm</strong>
+                                <span>Routines that ground you.</span>
+                            </div>
+                        </div>
+                        <div class="b">
+                            <div class="ico" style="border-color: var(--accent);">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                    <path d="M4 12h16M12 4v16" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Stick to it</strong>
+                                <span>Flexible systems for real life.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ctaRow">
+                        <a class="btn primary" href="#checkout">Yes, add this to my order</a>
+                        <a class="btn" href="#whatsinside">See content</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card heroSide reveal">
+                <div class="heroSide">
+                    <div class="mini">
+                        <h3>What you’ll unlock</h3>
+                        <div class="kpis">
+                            <div class="kpi">
+                                <div class="n" data-count="6">0</div>
+                                <div class="t">Digital Guides</div>
+                            </div>
+                            <div class="kpi">
+                                <div class="n" data-count="8">0</div>
+                                <div class="t">Week Plan</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mini">
+                        <h3>Perfect for you if…</h3>
+                        <ul class="list">
+                            <li class="li">
+                                <span class="tick">✔</span>
+                                <div>You start strong, then life gets too busy.</div>
+                            </li>
+                            <li class="li">
+                                <span class="tick">✔</span>
+                                <div>You want a clear system, not random tips.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="whatsinside" class="card section reveal" style="margin-top: 20px; padding: 26px;">
+            <h2 style="margin-top: 0;">What’s inside the Consistency Blueprint</h2>
+            <div class="grid3">
+                <div class="feat">
+                    <h4>25) Mind-Body Roadmap</h4>
+                    <p>Build routines across nutrition, movement, and sleep.</p>
+                </div>
+                <div class="feat">
+                    <h4>26) Wellness-Focused Habits</h4>
+                    <p>Daily rituals to reduce stress and improve focus.</p>
+                </div>
+                <div class="feat">
+                    <h4>27) Healthy Lifestyle Logic</h4>
+                    <p>Turn "I should" into "I do" with simple strategies.</p>
+                </div>
+                <div class="feat">
+                    <h4>28) Power of Consistency</h4>
+                    <p>How sustainable actions compound over time.</p>
+                </div>
+                <div class="feat">
+                    <h4>29) Habits That Stick</h4>
+                    <p>SMART goals, habit stacking, and environment design.</p>
+                </div>
+                <div class="feat">
+                    <h4>30) Create a Life You Love</h4>
+                    <p>Daily practices for fulfillment and grounding.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Checkout Section -->
+        <section id="checkout" class="card section reveal" style="margin-top: 20px; padding: 26px;">
+            <h2 style="margin-top: 0;">Get Instant Access</h2>
+            <div class="widgetWrap">
+                <div id="hotmart-sales-funnel"></div>
+                <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+                <script>
+                    if (typeof checkoutElements !== 'undefined') {
+                        checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+                    }
+                </script>
+            </div>
+        </section>
+
+        <section id="faq" class="card section reveal" style="margin-top: 20px; padding: 26px;">
+            <h2 style="margin-top: 0;">FAQ</h2>
+            <div class="faq">
+                <details>
+                    <summary>What if I'm too busy?</summary>
+                    <p>This is built for busy lives. Start with 5 minutes a day and build momentum.</p>
+                </details>
+                <details>
+                    <summary>How fast will I see results?</summary>
+                    <p>Energy and focus often improve in the first week of consistent small actions.</p>
+                </details>
+            </div>
+        </section>
+
+        <footer>
+            © 2026 Wellness Consistency Blueprint. Digital content only.
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Reveal animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Animated counters
+        function animateCount(el, to) {
+            let current = 0;
+            const duration = 1500;
+            const start = performance.now();
+            
+            function update(now) {
+                const progress = Math.min(1, (now - start) / duration);
+                el.textContent = Math.floor(progress * to);
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+        }
+
+        window.addEventListener('load', () => {
+            document.querySelectorAll('[data-count]').forEach(el => {
+                animateCount(el, parseInt(el.getAttribute('data-count')));
+            });
+        });
+    </script>
+</body>
+</html>
