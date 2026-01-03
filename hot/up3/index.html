@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="../up3/index.html">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Upsell 3 — The Habit Reset & Wellness Blueprint</title>
+    <style>
+        :root {
+            --bg1: #070A12;
+            --bg2: #0B1324;
+            --card: rgba(255, 255, 255, .07);
+            --card2: rgba(255, 255, 255, .10);
+            --stroke: rgba(255, 255, 255, .12);
+            --text: rgba(255, 255, 255, .92);
+            --muted: rgba(255, 255, 255, .72);
+            --muted2: rgba(255, 255, 255, .58);
+            --accent1: #7C3AED;
+            --accent2: #06B6D4;
+            --accent3: #22C55E;
+            --shadow: 0 18px 55px rgba(0, 0, 0, .45);
+            --radius: 18px;
+            --radius2: 26px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue";
+            color: var(--text);
+            background: radial-gradient(1200px 650px at 10% 10%, rgba(124, 58, 237, .25), transparent 60%),
+                radial-gradient(900px 500px at 90% 15%, rgba(6, 182, 212, .22), transparent 55%),
+                radial-gradient(900px 700px at 50% 110%, rgba(34, 197, 94, .14), transparent 60%),
+                linear-gradient(180deg, var(--bg1), var(--bg2));
+            overflow-x: hidden;
+        }
+
+        /* Efeito de granulação animada */
+        .grain {
+            pointer-events: none;
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+            mix-blend-mode: overlay;
+            opacity: .35;
+            animation: grain 7s steps(2) infinite;
+            z-index: 100;
+        }
+
+        @keyframes grain {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(-2%, 3%); }
+            50% { transform: translate(3%, -2%); }
+            75% { transform: translate(-4%, -1%); }
+            100% { transform: translate(0, 0); }
+        }
+
+        .container {
+            width: min(1100px, 92vw);
+            margin: 0 auto;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 60;
+            backdrop-filter: blur(14px);
+            background: linear-gradient(90deg, rgba(7, 10, 18, .72), rgba(11, 19, 36, .55));
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .topbar .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            gap: 12px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(255, 255, 255, .06);
+            border-radius: 999px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #fff, rgba(255, 255, 255, .1)),
+                linear-gradient(180deg, var(--accent2), var(--accent1));
+            box-shadow: 0 0 0 6px rgba(6, 182, 212, .12);
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .16);
+            background: linear-gradient(135deg, rgba(124, 58, 237, .95), rgba(6, 182, 212, .88));
+            color: white;
+            font-weight: 800;
+            letter-spacing: .2px;
+            box-shadow: 0 16px 40px rgba(124, 58, 237, .22);
+            text-decoration: none;
+            transition: transform .18s ease, filter .18s ease;
+            white-space: nowrap;
+        }
+
+        .cta:hover { transform: translateY(-1px); filter: saturate(1.15); }
+        .cta:active { transform: translateY(1px) scale(.99); }
+
+        header {
+            padding: 56px 0 18px;
+            position: relative;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            gap: 22px;
+            align-items: stretch;
+        }
+
+        @media (max-width: 920px) {
+            .hero { grid-template-columns: 1fr; gap: 16px; }
+            .topbar .row { flex-direction: column; align-items: flex-start; }
+        }
+
+        .panel {
+            border: 1px solid rgba(255, 255, 255, .10);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .05));
+            border-radius: var(--radius2);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .panel:before {
+            content: "";
+            position: absolute; inset: -2px;
+            background: radial-gradient(800px 220px at 20% 10%, rgba(124, 58, 237, .35), transparent 60%),
+                radial-gradient(680px 260px at 90% 20%, rgba(6, 182, 212, .30), transparent 55%),
+                radial-gradient(520px 240px at 40% 100%, rgba(34, 197, 94, .18), transparent 60%);
+            opacity: .9;
+            pointer-events: none;
+        }
+
+        .panel > * { position: relative; z-index: 2; }
+
+        .hero-left { padding: 28px 26px 24px; }
+        h1 { margin: 10px 0 10px; font-size: clamp(28px, 3.8vw, 46px); line-height: 1.06; letter-spacing: -.6px; }
+        .sub { margin: 0 0 16px; color: var(--muted); font-size: clamp(15px, 1.5vw, 18px); line-height: 1.55; max-width: 60ch; }
+
+        .highlight { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 18px; }
+        .chip {
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(0, 0, 0, .20);
+            color: rgba(255, 255, 255, .82);
+            padding: 10px 12px;
+            border-radius: 999px;
+            font-size: 13px;
+            backdrop-filter: blur(10px);
+            display: inline-flex; align-items: center; gap: 8px;
+        }
+        .chip b { color: white; }
+        .mini-ico {
+            width: 22px; height: 22px; border-radius: 8px;
+            background: linear-gradient(135deg, rgba(34, 197, 94, .95), rgba(6, 182, 212, .85));
+            display: inline-block;
+            box-shadow: 0 10px 26px rgba(6, 182, 212, .18);
+        }
+
+        .trust { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; color: var(--muted2); font-size: 13px; }
+        .trust span { display: inline-flex; align-items: center; gap: 8px; padding: 9px 10px; border-radius: 12px; background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .10); }
+
+        .hero-right { padding: 18px; }
+        .widget-box { padding: 16px; border-radius: 18px; background: rgba(0, 0, 0, .22); border: 1px solid rgba(255, 255, 255, .12); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06); }
+        .widget-title { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 6px 0 10px; }
+        .widget-title h2 { margin: 0; font-size: 16px; letter-spacing: .2px; }
+        .pricehint { font-size: 12px; color: var(--muted); padding: 8px 10px; border: 1px solid rgba(255, 255, 255, .12); border-radius: 999px; background: rgba(255, 255, 255, .05); white-space: nowrap; }
+
+        .section { padding: 22px 0; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+        @media (max-width: 920px) { .grid { grid-template-columns: 1fr; } }
+
+        .card {
+            border-radius: var(--radius);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .05));
+            border: 1px solid rgba(255, 255, 255, .10);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, .25);
+            padding: 16px;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: opacity .8s ease, transform .8s ease;
+        }
+        .card.show { opacity: 1; transform: translateY(0); }
+        .card:before {
+            content: "";
+            position: absolute; inset: -1px;
+            background: radial-gradient(420px 180px at 15% 20%, rgba(124, 58, 237, .22), transparent 55%),
+                radial-gradient(420px 180px at 90% 10%, rgba(6, 182, 212, .18), transparent 55%);
+            opacity: .9; pointer-events: none;
+        }
+        .card > * { position: relative; z-index: 2; }
+        .card h3 { margin: 8px 0 6px; font-size: 16px; color: white; }
+        .card p { margin: 0; color: var(--muted); line-height: 1.55; font-size: 14px; }
+        
+        .pill { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; padding: 8px 10px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .12); background: rgba(0, 0, 0, .20); color: rgba(255, 255, 255, .82); }
+        .pill i { width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(180deg, var(--accent1), var(--accent2)); display: inline-block; }
+
+        .books { margin-top: 10px; display: grid; grid-template-columns: 1fr; gap: 10px; }
+        .book { border-radius: 16px; padding: 14px; border: 1px solid rgba(255, 255, 255, .10); background: rgba(255, 255, 255, .05); display: flex; gap: 12px; align-items: flex-start; }
+        .cover { width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(135deg, rgba(124, 58, 237, .9), rgba(6, 182, 212, .75), rgba(34, 197, 94, .65)); box-shadow: 0 16px 44px rgba(6, 182, 212, .18); flex: 0 0 auto; position: relative; }
+        .cover:after { content: ""; position: absolute; inset: 10px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, .25); opacity: .55; }
+        .book b { display: block; font-size: 14px; margin-bottom: 3px; }
+        .book span { color: var(--muted); font-size: 13px; line-height: 1.45; }
+
+        .split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        @media (max-width: 920px) { .split { grid-template-columns: 1fr; } }
+
+        .faq details { border: 1px solid rgba(255, 255, 255, .10); background: rgba(255, 255, 255, .05); border-radius: 16px; padding: 12px 14px; margin: 10px 0; }
+        .faq summary { cursor: pointer; font-weight: 800; color: rgba(255, 255, 255, .88); list-style: none; outline: none; }
+        .faq p { color: var(--muted); margin: 8px 0 0; line-height: 1.55; }
+
+        .footer { padding: 26px 0 100px; color: var(--muted2); font-size: 12px; text-align: center; }
+
+        /* Sticky bottom CTA */
+        .bottom-cta {
+            position: fixed; left: 0; right: 0; bottom: 0; z-index: 80;
+            padding: 10px 0;
+            background: linear-gradient(180deg, rgba(11, 19, 36, 0), rgba(11, 19, 36, .78) 28%, rgba(11, 19, 36, .95));
+            backdrop-filter: blur(14px);
+            border-top: 1px solid rgba(255, 255, 255, .08);
+        }
+        .bottom-cta .inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+        .bottom-cta .note { color: var(--muted); font-size: 12px; line-height: 1.35; }
+        .bottom-cta .note b { color: white; }
+        @media (max-width: 720px) {
+            .bottom-cta .inner { flex-direction: column; align-items: stretch; }
+            .cta { justify-content: center; width: 100%; }
+            .bottom-cta .note { text-align: center; }
+        }
+    </style>
+
+    <!-- UTM Propagation Script -->
+    <script>
+        !function() {
+            document.addEventListener("DOMContentLoaded", function() {
+                const query = new URLSearchParams(window.location.search);
+                document.querySelectorAll("a").forEach(function(a) {
+                    try {
+                        const url = new URL(a.href);
+                        query.forEach(function(value, key) {
+                            if (!url.searchParams.has(key)) url.searchParams.set(key, value);
+                        });
+                        a.href = url.toString();
+                    } catch(e) {}
+                });
+            });
+        }();
+    </script>
+</head>
+<body>
+    <div class="grain"></div>
+
+    <div class="topbar">
+        <div class="container">
+            <div class="row">
+                <div class="badge">
+                    <span class="dot"></span>
+                    <span><b>Limited Upgrade:</b> Habit Reset & Wellness Blueprint (6-Book Bundle)</span>
+                </div>
+                <a class="cta" href="#checkout">Unlock This Upgrade →</a>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="hero">
+                <div class="panel hero-left">
+                    <div class="badge" style="display:inline-flex; margin-bottom:12px;">
+                        <span class="dot"></span>
+                        <span><b>Upsell 3</b> • Your next step for consistent wellness</span>
+                    </div>
+
+                    <h1>Rebuild Your Daily Routine —<br/>Without Burnout.</h1>
+                    <p class="sub">
+                        This upgrade gives you a complete, science-backed system to <b>break unhealthy loops</b>, 
+                        create <b>balanced wellness habits</b>, and lock in routines that support <b>energy and focus</b>.
+                    </p>
+
+                    <div class="highlight">
+                        <div class="chip"><span class="mini-ico"></span> <b>6 Ebooks</b> in 1 bundle</div>
+                        <div class="chip"><span class="mini-ico"></span> Habit Loop + Replacement</div>
+                        <div class="chip"><span class="mini-ico"></span> Stress & Sleep Routines</div>
+                        <div class="chip"><span class="mini-ico"></span> Designed for consistency</div>
+                    </div>
+
+                    <div class="trust">
+                        <span>✅ Instant Access</span>
+                        <span>✅ Beginner-friendly</span>
+                        <span>✅ Practical step-by-step</span>
+                    </div>
+                </div>
+
+                <div class="panel hero-right" id="checkout">
+                    <div class="widget-box">
+                        <div class="widget-title">
+                            <h2>Yes — Add This Bundle to My Order</h2>
+                            <span class="pricehint">One-time upgrade</span>
+                        </div>
+
+                        <!-- HOTMART Sales Funnel Widget -->
+                        <div id="hotmart-sales-funnel"></div>
+                        <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+                        <script>
+                            if (typeof checkoutElements !== 'undefined') {
+                                checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+                            }
+                        </script>
+
+                        <div style="margin-top:12px; color:rgba(255,255,255,.68); font-size:11px; line-height:1.45;">
+                            🔒 Secure checkout • 📩 Access sent by email • 💡 Use on mobile or desktop
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="section">
+                <div class="grid">
+                    <div class="card reveal">
+                        <span class="pill"><i></i> Problem</span>
+                        <h3>You start strong… then life happens.</h3>
+                        <p>Stress and busy weeks pull you back into old patterns. Procrastination and fatigue become the cycle.</p>
+                    </div>
+                    <div class="card reveal">
+                        <span class="pill"><i></i> Shift</span>
+                        <h3>Stop relying on motivation.</h3>
+                        <p>Build a system that works even on low-energy days: environment design and simple "anchor" habits.</p>
+                    </div>
+                    <div class="card reveal">
+                        <span class="pill"><i></i> Outcome</span>
+                        <h3>More focus. More control.</h3>
+                        <p>A daily routine that supports your health and mindset — without needing to be perfect every day.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Books & List -->
+            <div class="section">
+                <div class="split">
+                    <div class="card reveal">
+                        <span class="pill"><i></i> Bundle Content</span>
+                        <h3>Your 6-Book Wellness System</h3>
+                        <div class="books">
+                            <div class="book">
+                                <div class="cover"></div>
+                                <div><b>19) Create Balance Through Habits</b><span>Rituals for sustainable balance.</span></div>
+                            </div>
+                            <div class="book">
+                                <div class="cover"></div>
+                                <div><b>20) Science of Habit Formation</b><span>Triggers and strategies that stick.</span></div>
+                            </div>
+                            <div class="book">
+                                <div class="cover"></div>
+                                <div><b>21) Mindful Choices</b><span>Routines for stress reduction.</span></div>
+                            </div>
+                            <div class="book">
+                                <div class="cover"></div>
+                                <div><b>22) Small Start Approach</b><span>Stack habits and overcome setbacks.</span></div>
+                            </div>
+                            <div class="book">
+                                <div class="cover"></div>
+                                <div><b>23) Replacing Routines</b><span>Break negative loops for better ones.</span></div>
+                            </div>
+                            <div class="book">
+                                <div class="cover"></div>
+                                <div><b>24) Simple Life Improvements</b><span>Hydration, sleep, and breathing.</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card reveal">
+                        <span class="pill"><i></i> Perfect For</span>
+                        <h3>If you relate to these, this is for you:</h3>
+                        <p style="margin-top:10px">
+                            ✅ Inconsistent with routines <br/>
+                            ✅ Need focus without extreme rules <br/>
+                            ✅ Want emotional stability <br/>
+                            ✅ Want a system, not random tips <br/>
+                            ✅ Habits that last long-term
+                        </p>
+                        
+                        <div style="height:20px"></div>
+                        <span class="pill"><i></i> Quick Tip</span>
+                        <h3 style="margin-top:10px">First 24 hours plan:</h3>
+                        <p>
+                            1. Identify 1 trigger <br/>
+                            2. Replace the routine <br/>
+                            3. Habit-stack a 2-min action <br/>
+                            4. Set an evening anchor
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section faq">
+                <div class="panel" style="padding:22px;">
+                    <h2 style="margin:0 0 16px; font-size:20px;">Frequently Asked Questions</h2>
+                    <details>
+                        <summary>Is this beginner-friendly?</summary>
+                        <p>Absolutely. It’s built to take you from zero to a consistent, low-stress routine.</p>
+                    </details>
+                    <details>
+                        <summary>How do I access the content?</summary>
+                        <p>Instant access is provided via email immediately after your purchase is confirmed.</p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>Educational content only. Not medical advice. © 2026 Habit Reset Blueprint.</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="bottom-cta">
+        <div class="container">
+            <div class="inner">
+                <div class="note">
+                    <b>Upgrade Now:</b> Habit Reset & Wellness Blueprint<br/>
+                    Lock in routines that last — even on busy weeks.
+                </div>
+                <a class="cta" href="#checkout">Add This Upgrade →</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Scroll Reveal Animation
+        const revealCards = () => {
+            const cards = document.querySelectorAll(".reveal");
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    }
+                });
+            }, { threshold: 0.1 });
+            cards.forEach(card => observer.observe(card));
+        };
+        document.addEventListener("DOMContentLoaded", revealCards);
+    </script>
+</body>
+</html>
