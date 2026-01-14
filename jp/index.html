@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Healthy Japanese Cuisine Secrets</title>
+    <title>Japanese Protocol: Healthy Cuisine Secrets</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,7 +78,7 @@
             </a>
         </div>
 
-        <!-- Food Images Strip (Simulated based on screenshot) -->
+        <!-- Food Images Strip -->
         <div class="w-full max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 z-10 px-2">
             <div class="rounded-full overflow-hidden border-4 border-white shadow-2xl aspect-square relative group">
                 <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=500&auto=format&fit=crop" alt="Sushi Bowl" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
@@ -105,7 +105,7 @@
             </h2>
 
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- Step 1 Card (New) -->
+                <!-- Step 1 Card -->
                 <div class="card-glass p-8 rounded-2xl shadow-xl hover:bg-opacity-80 transition duration-300 transform hover:-translate-y-2">
                     <h3 class="text-2xl font-bold mb-4 text-pink-400">STEP 1:</h3>
                     <p class="text-gray-200 leading-relaxed">
@@ -113,7 +113,7 @@
                     </p>
                 </div>
 
-                <!-- Step 2 Card (New) -->
+                <!-- Step 2 Card -->
                 <div class="card-glass p-8 rounded-2xl shadow-xl hover:bg-opacity-80 transition duration-300 transform hover:-translate-y-2">
                     <h3 class="text-2xl font-bold mb-4 text-pink-400">STEP 2:</h3>
                     <p class="text-gray-200 leading-relaxed">
@@ -239,36 +239,75 @@
             </p>
             
             <div class="mt-12 pt-8 border-t border-gray-800 text-xs text-gray-600">
-                <p>&copy; 2025 Constant Evolution. All rights reserved.</p>
-                <p class="mt-2">Disclaimer: This site is not a part of the Facebook website or Facebook Inc.</p>
+                <p>&copy; 2025 777 Empreendimentos Digitais LTDA. All rights reserved.</p>
+                <p class="mt-2 mb-4">Disclaimer: This site is not a part of the Facebook website or Facebook Inc.</p>
+                
+                <!-- Required Links for Digistore Approval -->
+                <div class="flex justify-center space-x-4">
+                    <button onclick="document.getElementById('imprint-modal').classList.remove('hidden')" class="text-gray-500 hover:text-white underline">
+                        Imprint / Legal Notice
+                    </button>
+                    <span class="text-gray-700">|</span>
+                    <a href="terms.html" class="text-gray-500 hover:text-white underline">Terms of Use</a>
+                    <span class="text-gray-700">|</span>
+                    <a href="privacy.html" class="text-gray-500 hover:text-white underline">Privacy Policy</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Simple Checkout Modal (Mockup) -->
-    <div id="checkout-modal" class="hidden fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
-        <div class="bg-white text-gray-900 rounded-lg max-w-md w-full p-6 relative">
-            <button onclick="document.getElementById('checkout-modal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
+    <!-- Imprint Modal (Mandatory for German/EU Law) -->
+    <div id="imprint-modal" class="hidden fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center p-4">
+        <div class="bg-white text-gray-900 rounded-lg max-w-lg w-full p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="document.getElementById('imprint-modal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
                 <i class="fas fa-times text-2xl"></i>
             </button>
-            <h3 class="text-2xl font-bold mb-4 text-indigo-900">Checkout</h3>
-            <p class="mb-4">You are purchasing the <strong>Japanese Healthy Cuisine Guide</strong>.</p>
-            <div class="bg-gray-100 p-4 rounded mb-4 flex justify-between font-bold">
-                <span>Total:</span>
-                <span>US$ 27.00</span>
+            <h3 class="text-2xl font-bold mb-6 text-indigo-900 border-b pb-2">Imprint (Legal Notice)</h3>
+            
+            <div class="space-y-4 text-sm text-gray-700">
+                <p class="text-xs text-gray-500 italic mb-4">
+                    Information according to § 5 DDG (German Digital Services Act):
+                </p>
+
+                <div>
+                    <h4 class="font-bold text-indigo-800">1. Company / Operator</h4>
+                    <p>777 Empreendimentos Digitais LTDA</p>
+                    <p>Avenida Tiradentes, 1008, Andar 20, Sala 2005, Cxpst 114</p>
+                    <p>Zona 01, Maringá - PR, CEP 87013-260</p>
+                    <p>Brasil</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-indigo-800">2. Contact</h4>
+                    <p><strong>Email:</strong> fac.seveninfo@gmail.com</p>
+                    <p><strong>Phone:</strong> +55 (69) 984XX-XXXX</p> <!-- Please update with the full number -->
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-indigo-800">3. Legal Representation</h4>
+                    <p>Represented by: [Nome do Sócio-Administrador]</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-indigo-800">4. Registration</h4>
+                    <p>CNPJ (Registration Number): 41.084.432/0001-05</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-indigo-800">5. Responsible for Content</h4>
+                    <p>Responsible according to § 18 Abs. 2 MStV:</p>
+                    <p>777 Empreendimentos Digitais LTDA</p>
+                </div>
+                
+                <div class="mt-6 pt-4 border-t border-gray-200">
+                    <p class="text-xs">
+                        Platform of the EU Commission regarding online dispute resolution: <a href="https://ec.europa.eu/consumers/odr" target="_blank" class="text-blue-600 underline">https://ec.europa.eu/consumers/odr</a>
+                    </p>
+                </div>
             </div>
-            <button class="w-full bg-green-600 text-white font-bold py-3 rounded hover:bg-green-700 transition" onclick="window.location.href='https://www.checkout-ds24.com/product/661187'">
-                Proceed to Payment
-            </button>
         </div>
     </div>
 
-    
-<script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
-<script type="text/javascript">
-digistorePromocode( { "product_id": 661187, "adjust_domain": true } );
-</script>
-    
     <!-- Begin of Digistore24 Trusted Badge Code -->
     <script type="text/javascript" src="https://www.digistore24.com/trusted-badge/42478/SlSACPoYMSC6thn/salespage"></script>
     <!-- End of Digistore24 Trusted Badge Code -->
