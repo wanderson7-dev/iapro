@@ -115,6 +115,10 @@
                 Congratulations on your decision to work smarter. <br>
                 Your digital copy of <span class="text-pink-400 font-bold">Japanese Protocol</span> is ready for immediate download.
             </p>
+            <!-- Digistore Requirement: Billing Descriptor -->
+            <p class="mt-4 text-sm text-gray-400 bg-gray-800 inline-block px-4 py-2 rounded-full border border-gray-700">
+                <i class="fas fa-info-circle mr-2"></i>The charge will appear on your statement as <strong>Digistore24</strong>.
+            </p>
         </div>
 
         <!-- Download & Instructions Card -->
@@ -188,8 +192,71 @@
     <!-- Footer -->
     <footer class="bg-black py-8 px-4 text-center border-t border-gray-800 text-xs text-gray-600">
         <p>&copy; 2025 Japanese Protocol. All rights reserved.</p>
-        <p class="mt-2">Disclaimer: This site is not a part of the Facebook website or Facebook Inc.</p>
+        <p class="mt-2 mb-4">Disclaimer: This site is not a part of the Facebook website or Facebook Inc.</p>
+        
+        <!-- Required Links for Digistore Approval -->
+        <div class="flex justify-center items-center flex-wrap gap-4">
+            <button onclick="document.getElementById('imprint-modal').classList.remove('hidden')" class="text-gray-500 hover:text-white underline">
+                Imprint / Legal Notice
+            </button>
+            <span class="text-gray-700">|</span>
+            <a href="terms.html" class="text-gray-500 hover:text-white underline">Terms of Use</a>
+            <span class="text-gray-700">|</span>
+            <a href="privacy.html" class="text-gray-500 hover:text-white underline">Privacy Policy</a>
+        </div>
     </footer>
+
+    <!-- Imprint Modal (Mandatory for German/EU Law) -->
+    <div id="imprint-modal" class="hidden fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center p-4">
+        <div class="bg-white text-gray-900 rounded-lg max-w-lg w-full p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="document.getElementById('imprint-modal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            <h3 class="text-2xl font-bold mb-6 text-indigo-900 border-b pb-2">Imprint (Legal Notice)</h3>
+            
+            <div class="space-y-4 text-sm text-gray-700">
+                <p class="text-xs text-gray-500 italic mb-4">
+                    Information according to § 5 DDG (German Digital Services Act):
+                </p>
+
+                <div>
+                    <h4 class="font-bold text-indigo-800">1. Company / Operator</h4>
+                    <p>777 Empreendimentos Digitais LTDA</p>
+                    <p>Avenida Tiradentes, 1008, Andar 20, Sala 2005, Cxpst 114</p>
+                    <p>Zona 01, Maringá - PR, CEP 87013-260</p>
+                    <p>Brasil</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-indigo-800">2. Contact</h4>
+                    <p><strong>Email:</strong> fac.seveninfo@gmail.com</p>
+                    <p><strong>Phone:</strong> +55 (69) 984XX-XXXX</p> <!-- Please update with the full number -->
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-indigo-800">3. Legal Representation</h4>
+                    <p>Represented by: [Nome do Sócio-Administrador]</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-indigo-800">4. Registration</h4>
+                    <p>CNPJ (Registration Number): 41.084.432/0001-05</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-indigo-800">5. Responsible for Content</h4>
+                    <p>Responsible according to § 18 Abs. 2 MStV:</p>
+                    <p>777 Empreendimentos Digitais LTDA</p>
+                </div>
+                
+                <div class="mt-6 pt-4 border-t border-gray-200">
+                    <p class="text-xs">
+                        Platform of the EU Commission regarding online dispute resolution: <a href="https://ec.europa.eu/consumers/odr" target="_blank" class="text-blue-600 underline">https://ec.europa.eu/consumers/odr</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Begin of Digistore24 Trusted Badge Code -->
     <script type="text/javascript" src="https://www.digistore24.com/trusted-badge/42479/oGeq908QpCOURbL/thankyoupage"></script>
