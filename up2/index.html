@@ -47,13 +47,13 @@ ul.k li{display:flex;gap:10px;margin:12px 0;color:#d7e5ff;font-size:15px}
   color:#ffbcbc;padding:16px;border-radius:14px;margin-top:12px;font-size:15px;font-weight:600
 }
 
-/* Monetizze Upsell Iframe Styling */
-.iframeUpsell {
-  width: 100% !important;
-  border: none !important;
-  min-height: 450px;
-  background: transparent;
-}
+/* Button Styles (Ported from previous version) */
+.btn { display: block; width: 100%; padding: 16px; border-radius: 14px; background: linear-gradient(180deg, var(--brand), var(--brand-dark)); color: white; font-size: 22px; font-weight: 900; cursor: pointer; letter-spacing: .3px; box-shadow: 0 14px 40px rgba(40,200,74,.45), inset 0 -2px rgba(0,0,0,.3); animation: pulse 1.35s infinite ease-in-out; text-align: center; text-decoration: none; }
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.02); } }
+
+/* CTA Note Link Styles */
+.cta-note a { color: #ffffff70; font-size: 13px; text-decoration: none; }
+.cta-note a:hover { text-decoration: underline; color: #fff; }
 
 /* Bottom CTA Area */
 .cta-container {
@@ -136,9 +136,15 @@ ul.k li{display:flex;gap:10px;margin:12px 0;color:#d7e5ff;font-size:15px}
     <div class="cta-container">
       <p class="note">Please confirm your selection below to proceed:</p>
       
-      <!-- Monetizze Upsell Component -->
-      <script type="text/javascript" src="https://app.monetizze.com.br/upsell_incorporado.php"></script>
-      <iframe class="iframeUpsell" data-chave="7eb7644e615fbef5944b9e6f78b8674b"></iframe>
+      <!-- BOTÃO DE SIM (LINK ATUALIZADO) -->
+      <a href="https://go.centerpag.com/PPU38CQ48AL?upsell=true" class="btn">
+        YES, UNLOCK FOCUS AI NOW!
+      </a>
+
+      <!-- Link de recusa -->
+      <div class="note cta-note" style="margin-top:12px;">
+        <a href="#" target="_top">No thanks, I prefer standard performance.</a>
+      </div>
     </div>
 
     <!-- WARNING -->
