@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualização de Vídeo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #0f172a; /* Azul escuro sofisticado */
+        }
+        .video-container {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background-color: #000;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div class="w-full max-w-4xl">
+        <!-- Container do Vídeo -->
+        <div class="video-container">
+            <!-- Embed original solicitado -->
+            <vturb-smartplayer id="ab-697031f010d72bdc9f397888" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>
+            
+            <script type="text/javascript">
+                var s = document.createElement("script");
+                s.src = "https://scripts.converteai.net/e47d2695-e7da-47cf-a7a5-1f9da5313774/ab-test/697031f010d72bdc9f397888/player.js";
+                s.async = !0;
+                document.head.appendChild(s);
+            </script>
+        </div>
+
+        <!-- Rodapé simples opcional -->
+        <p class="text-slate-400 text-center mt-6 text-sm font-light">
+            &copy; 2024 Sua Empresa - Todos os direitos reservados.
+        </p>
+    </div>
+
+</body>
+</html>
