@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <link rel="shortcut icon" href="https://www.amazon.com/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rewards</title>
+  <title>Reviews</title>
   <script src="https://cdn.tailwindcss.com"></script>
 
   <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-subids async defer></script>
@@ -86,6 +86,7 @@
       height: 40px;
       /* Adjusted to be more subtle like Amazon header logo */
       margin-bottom: 0;
+      border-radius: 6px;
     }
 
     .nome-produto {
@@ -113,7 +114,7 @@
     }
 
     iframe {
-      margin-top: 20px;
+      margin-top: -5px;
       width: 100%;
       height: 1700px;
       border: none;
@@ -256,21 +257,25 @@
 
 <body>
 
+  <div style="max-width: 420px; margin: 10px auto;">
+    <img src="assets/banner.png" alt="Amazon Promo" style="width: 100%; display: block;">
+  </div>
+
   <div class="caixa-checkout">
     <div class="sobreposicao-topo">
-      <img src="assets/amzlogo.png" alt="Logo">
+      <img src="assets/amazon.png" alt="Logo">
       <div>
-        <div class="nome-produto">Fee AMZ Reviews</div>
-        <div class="autor">Author: Amazon Inc. ©</div>
+        <div class="nome-produto">Fee Amz Reviews</div>
+        <div class="autor">Author: Amazon</div>
         <div class="preco">$ 23,00</div>
       </div>
-    </div>
+    </div>ß
 
 
 
+    <!-- ===== coloque o link do checkout aqui ===== -->
 
-
-    <iframe id="monetizze_iframe" src="https://pay.monetizze.com.br/KSS450366" scrolling="no"></iframe>
+    <iframe id="monetizze_iframe" src="https://go.centerpag.com/PPU38CQ64BA" scrolling="no"></iframe>
 
     <!-- ===== SCRIPT PARA PASSAR UTM ===== -->
     <script>
