@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lemon Code | Members Area</title>
+    <style>
+        :root {
+            --primary-citrus: #f4d03f;
+            --soft-green: #2ecc71;
+            --dark-text: #2c3e50;
+            --light-bg: #fdfcf0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            max-width: 500px;
+            width: 90%;
+            transition: all 0.3s ease;
+        }
+
+        /* Login Styles */
+        #login-form {
+            text-align: center;
+        }
+
+        h2 {
+            color: var(--dark-text);
+            margin-bottom: 1.5rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: var(--primary-citrus);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: opacity 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        /* Content Styles */
+        #members-content {
+            display: none;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            background: #fff9e6;
+            margin: 10px 0;
+            padding: 15px;
+            border-left: 4px solid var(--primary-citrus);
+            border-radius: 4px;
+        }
+
+        .footer-note {
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            margin-top: 20px;
+            padding-top: 15px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .badge {
+            background: var(--soft-green);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Module Navigation Styles */
+        .module-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .module-card {
+            background: #fff9e6;
+            border-left: 5px solid var(--primary-citrus);
+            padding: 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+        }
+
+        .module-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px rgba(244, 208, 63, 0.15);
+            background: #fff;
+            border-color: var(--soft-green);
+        }
+
+        .module-icon {
+            font-size: 1.8rem;
+            margin-right: 20px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .module-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--dark-text);
+            vertical-align: middle;
+        }
+
+        /* Ultimate Guide CSS Updates */
+        .read-time {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            display: inline-block;
+            background: #f0f3f4;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .content-view {
+            display: none;
+            animation: slideIn 0.4s ease-out;
+            line-height: 1.9;
+            /* Increased for readability */
+            font-size: 1.1rem;
+            /* Larger font for readability */
+        }
+
+        .content-view p {
+            margin-bottom: 1.5rem;
+            color: #34495e;
+        }
+
+        details {
+            background-color: #fff;
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: all 0.2s;
+        }
+
+        details:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        summary {
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--dark-text);
+            list-style: none;
+            /* Remove default triangle */
+            position: relative;
+            padding-right: 20px;
+        }
+
+        summary::after {
+            content: "+";
+            position: absolute;
+            right: 0;
+            font-weight: bold;
+            color: var(--soft-green);
+        }
+
+        details[open] summary::after {
+            content: "-";
+        }
+
+        details[open] summary {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: #7f8c8d;
+            cursor: pointer;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 10px 0;
+            width: auto;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .back-btn:hover {
+            color: var(--primary-citrus);
+        }
+
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .science-box {
+            background: #fff;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        .science-title {
+            color: #2980b9;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .mistake-box {
+            background: #fff5f5;
+            border-left: 4px solid #e74c3c;
+            padding: 20px;
+            margin: 20px 0;
+            color: #c0392b;
+        }
+
+        .content-section h3 {
+            color: var(--soft-green);
+            border-bottom: 2px solid #f0f3f4;
+            padding-bottom: 12px;
+            margin-top: 45px;
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .recipe-box {
+            background: #fdfcf5;
+            /* Slightly warmer bg */
+            border: 1px solid #f2e7c3;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01);
+        }
+
+        .recipe-title {
+            font-weight: 800;
+            color: var(--dark-text);
+            margin-bottom: 15px;
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .tip-box {
+            background-color: #e8f8f5;
+            border-left: 4px solid var(--soft-green);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-style: italic;
+            color: #2c3e50;
+        }
+
+        .step-list {
+            padding-left: 20px;
+        }
+
+        .step-list li {
+            margin-bottom: 10px;
+            padding-left: 10px;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div id="login-form">
+            <h2>🍋 Lemon Code</h2>
+            <p>Reconnect with your natural energy</p>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="login()">Enter Members Area</button>
+        </div>
+
+        <div id="members-content">
+            <!-- Main Menu View -->
+            <div id="main-menu">
+                <h2>Welcome to Lemon Code</h2>
+                <p>Select a module to start your journey:</p>
+
+                <div class="module-grid">
+                    <div class="module-card" onclick="showModule('morning-rituals')">
+                        <div>
+                            <span class="module-icon">☀️</span>
+                            <span class="module-title">Morning Rituals</span>
+                        </div>
+                        <span>→</span>
+                    </div>
+
+                    <div class="module-card" onclick="showModule('digestive-care')">
+                        <div>
+                            <span class="module-icon">🍵</span>
+                            <span class="module-title">Digestive Care</span>
+                        </div>
+                        <span>→</span>
+                    </div>
+
+                    <div class="module-card" onclick="showModule('rest-pause')">
+                        <div>
+                            <span class="module-icon">🌙</span>
+                            <span class="module-title">Rest & Pause</span>
+                        </div>
+                        <span>→</span>
+                    </div>
+
+                    <div class="module-card" onclick="showModule('three-steps')">
+                        <div>
+                            <span class="module-icon">🚀</span>
+                            <span class="module-title">The 3-Step Method</span>
+                        </div>
+                        <span>→</span>
+                    </div>
+                </div>
+
+                <div class="footer-note">
+                    🌿 <span class="badge">Bonus</span> Access your extra resources and practical deep dives in the
+                    library below.
+                </div>
+
+                <button onclick="location.reload()"
+                    style="background: #eee; color: #666; font-size: 0.9rem; margin-top: 30px;">Logout</button>
+            </div>
+
+            <!-- Content Views -->
+
+            <!-- Module 1: Morning Rituals -->
+            <div id="morning-rituals" class="content-view">
+                <button class="back-btn" onclick="showMenu()">← Back to Menu</button>
+                <img src="img/morning_ritual.png" alt="Morning Ritual Lemon Water" class="hero-img">
+                <span class="read-time">⏱️ Read Time: 12 Minutes</span>
+
+                <h2>☀️ The Morning Mastery Protocol</h2>
+                <p><strong>The foundation of the Lemon Code.</strong> How you start your morning dictates the energy
+                    curve of your entire day. Most people start their day in a <em>reactive</em> state—checking
+                    notifications, rushing, and spiking cortisol. This protocol is designed to put you in a
+                    <em>proactive</em> state, chemically signaling your body that it is safe, nourished, and ready to
+                    perform.
+                </p>
+
+                <div class="content-section">
+                    <h3>Phase 1: The Biology of Waking</h3>
+                    <p>When you wake up, your body undergoes the <strong>Cortisol Awakening Response (CAR)</strong>.
+                        This is a natural spike in cortisol (stress hormone) that reaches its peak 30-45 minutes after
+                        waking. It's designed to give you the energy to "hunt and gather."</p>
+                    <p>However, if you add caffeine or digital stress (emails/news) during this window, you overshoot
+                        the optimal cortisol range. This leads to the dreaded "3 PM crash" and anxiety later in the day.
+                    </p>
+                    <div class="tip-box">
+                        <strong>The Protocol Goal:</strong> Delay caffeine and Digital input for at least 60 minutes.
+                        Use this time to hydrate and move.
+                    </div>
+
+                    <h3>Phase 2: The Hydration Protocol</h3>
+                    <p>After 7-8 hours of sleep, you are fundamentally dehydrated. Your blood is viscous (thick), and
+                        your brain has shrunk slightly away from the skull due to fluid loss. Rehydrating is the single
+                        most effective cognitive enhancer available.</p>
+
+                    <h4>The Hydration Tier List</h4>
+                    <ul>
+                        <li><strong>Tier S (The Lemon Code):</strong> Warm Water + Lemon + Pinch of Celtic Salt.
+                            (Electrolytes + Enzymes).</li>
+                        <li><strong>Tier A:</strong> Plain Room Temp Water. (Adequate, but lacks minerals).</li>
+                        <li><strong>Tier F:</strong> Coffee or Energy Drinks. (Diuretics that dehydrate you further).
+                        </li>
+                    </ul>
+
+                    <div class="science-box">
+                        <span class="science-title">🔬 Deep Dive: Alkaline Ash & Enzymes</span>
+                        <p><strong>The Alkaline Myth vs. Reality:</strong> You cannot change the pH of your blood (it
+                            stays strictly at 7.35-7.45). However, you CAN change the workload on your kidneys. Lemon
+                            possesses an anionic structure that, when metabolized, leaves an <strong>alkaline
+                                ash</strong>. This buffers the acidity from metabolic waste produced during sleep
+                            (autophagy).</p>
+                        <p><strong>Liver Support:</strong> The atomic structure of lemon juice mimics the digestive
+                            juices found in the stomach. This "tricks" the liver into producing bile, which is essential
+                            for emulsifying fats and keeping your elimination pathways open.</p>
+                    </div>
+
+                    <div class="recipe-box">
+                        <span class="recipe-title">Step-by-Step Method:</span>
+                        <ul>
+                            <li><strong>Water:</strong> 500ml of warm water (approx. 40°C). Cold water shocks the Vagus
+                                nerve and dampens "Agni" (digestive fire).</li>
+                            <li><strong>Lemon:</strong> Juice of 1/2 fresh organic lemon.</li>
+                            <li><strong>Salt:</strong> A pinch of unrefined gray sea salt or pink Himalayan salt. This
+                                provides trace minerals crucial for electrical signaling in the brain.</li>
+                            <li><strong>Timing:</strong> Consume within 10 minutes of waking up.</li>
+                        </ul>
+                    </div>
+
+                    <div class="mistake-box">
+                        <strong>⚠️ Critical Warning:</strong> Do NOT brush your teeth immediately after drinking lemon
+                        water. The citric acid temporarily softens tooth enamel. Rinsing and brushing immediately can
+                        erode your teeth. <strong>Protocol:</strong> Rinse mouth with plain water -> Wait 20 mins ->
+                        Brush.
+                    </div>
+
+                    <h3>Phase 3: The Lymphatic Deep Dive</h3>
+                    <div class="tip-box">
+                        "The blood has a pump (the heart). The lymph system has no pump. It relies on YOU."
+                    </div>
+                    <p>Your lymphatic system is your body's sewage treatment plant. It collects cellular waste,
+                        bacteria, and toxins. But unlike blood, it doesn't move unless you move. Stagnant lymph leads to
+                        brain fog, skin breakouts, and low immunity.</p>
+
+                    <h4>The 5-Minute "Pump" Flow</h4>
+                    <ol class="step-list">
+                        <li><strong>The Bounce (1 min):</strong> Stand with feet shoulder-width apart. Lift heels
+                            slightly and drop them down. Let your whole body shake. This vibration opens the lymphatic
+                            valves.</li>
+                        <li><strong>The Reach (1 min):</strong> Interlace fingers, push palms to the sky. Inhale deeply,
+                            expanding the ribcage. The diaphragm acts as a central pump for the lymph system.</li>
+                        <li><strong>The Twist (1 min):</strong> Arms loose, rotate spine left and right. Imagine
+                            wringing out a wet towel.</li>
+                        <li><strong>The Forward Fold (1 min):</strong> Invert your head (below heart level) to encourage
+                            blood flow to the brain.</li>
+                        <li><strong>The Stillness (1 min):</strong> Hand on heart. Set an intention. cortisol lowers,
+                            oxytocin rises.</li>
+                    </ol>
+
+                    <h3>Phase 4: The Golden Immunity Shot (Optional)</h3>
+                    <p>Use this weapon when you feel the onset of a cold or general inflammation.</p>
+                    <div class="recipe-box">
+                        <span class="recipe-title">The "Inflammation Extinguisher":</span>
+                        <ul>
+                            <li>50ml warm water</li>
+                            <li>1/2 tsp turmeric powder (Potent anti-inflammatory)</li>
+                            <li>1 pinch black pepper (<strong>Crucial:</strong> Piperine increases curcumin absorption
+                                by 2000%)</li>
+                            <li>1 tsp quality fat (Coconut oil / Olive oil). Turmeric is fat-soluble. Without fat, 90%
+                                of it is excreted unused.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Common Questions (FAQ)</h3>
+                <details>
+                    <summary>Can I use lime instead of lemon?</summary>
+                    <p>Yes, limes have a very similar profile. However, lemons are generally higher in Vitamin C.</p>
+                </details>
+                <details>
+                    <summary>Why do I feel nauseous drinking water first thing?</summary>
+                    <p>This often indicates a high toxic load or mucus in the stomach. Start with a smaller amount
+                        (200ml) and sip slowly. Ensure the water is warm, not cool.</p>
+                </details>
+                <details>
+                    <summary>Can I add honey?</summary>
+                    <p>Ideally, no. Sugar (even natural) spikes insulin, which we want to keep low in the morning to
+                        encourage fat burning. If you must, use 1/2 tsp of raw Manuka honey.</p>
+                </details>
+            </div>
+
+            <!-- Module 2: Digestive Care -->
+            <div id="digestive-care" class="content-view">
+                <button class="back-btn" onclick="showMenu()">← Back to Menu</button>
+                <img src="img/digestive_tea.png" alt="Ginger Tea" class="hero-img">
+                <span class="read-time">⏱️ Read Time: 15 Minutes</span>
+
+                <h2>🍵 The Gut Renovation Guide</h2>
+                <p><strong>You are not what you eat; you are what you absorbed.</strong> Digestion is the most
+                    energy-intensive process in the human body. When digestion is poor, your body steals energy from
+                    your brain to fuel the gut. This results in the infamous "brain fog" and post-lunch lethargy.</p>
+
+                <div class="content-section">
+                    <h3>Concept 1: Agni (Metabolic Fire)</h3>
+                    <p>Think of your digestion like a campfire. To burn the wood (food) efficiently, you need a strong,
+                        steady fire.</p>
+                    <ul>
+                        <li><strong>Damping the Fire:</strong> Drinking ice-cold water with meals is like throwing a
+                            bucket of water on your campfire. Digestion halts, food ferments, and bloating occurs.</li>
+                        <li><strong>Stoking the Fire:</strong> Ginger, black pepper, and warm liquids increase the heat,
+                            ensuring complete combustion of your food.</li>
+                    </ul>
+
+                    <h3>Concept 2: The Microbiome City</h3>
+                    <p>Your gut is home to trillions of bacteria. It's a bustling city with "good guys" (symbiotic) and
+                        "bad guys" (pathogenic).</p>
+                    <div class="mistake-box">
+                        <strong>The Sugar Trap:</strong> Pathogenic bacteria and yeasts (like Candida) feed exclusively
+                        on sugar. When you crave sugar, it's often not YOU craving it—it's them screaming for food.
+                        Starve them, and the cravings disappear in 3 days.
+                    </div>
+
+                    <h3>Protocol 1: The Post-Meal Ginger Infusion</h3>
+                    <div class="recipe-box">
+                        <p>This is your primary tool for eliminating the "heavy" feeling after meals.</p>
+                        <span class="recipe-title">Preparation:</span>
+                        <ul>
+                            <li>3-4 thin slices of fresh ginger (Bio-active compound: Gingerol)</li>
+                            <li>1 strip of lemon peel (twist it to release oils)</li>
+                            <li>1 cup boiling water</li>
+                        </ul>
+                        <p><strong>Instruction:</strong> Pour boiling water over the ginger and peel. Cover and steep
+                            for 7 minutes. Sip slowly <strong>after</strong> eating. </p>
+                        <p><strong>Why it works:</strong> Gingerol stimulates gastric emptying. It physically moves food
+                            from the stomach to the small intestine, preventing fermentation.</p>
+                    </div>
+
+                    <div class="science-box">
+                        <span class="science-title">🧠 The Gut-Brain Axis</span>
+                        <p>The Vagus Nerve connects your brain to your gut. It's a two-way highway. 90% of your
+                            Serotonin (the happiness hormone) is produced in the gut, not the brain. If your gut is
+                            inflamed, your mood will inevitably be low or anxious.</p>
+                        <p><strong>Action Step:</strong> Before eating, take 3 deep belly breaths. This manually
+                            switches your nervous system from Sympathetic (Fight/Flight) to Parasympathetic
+                            (Rest/Digest). Blood flows from your limbs to your stomach, ready for digestion.</p>
+                    </div>
+
+                    <h3>Protocol 2: The biochemical Glucose Hack (ACV)</h3>
+                    <div class="recipe-box">
+                        <p>Apple Cider Vinegar (with "The Mother") is a potent tool for metabolic flexibility.</p>
+                        <span class="recipe-title">The Mix:</span>
+                        <ul>
+                            <li>1 tbsp Apple Cider Vinegar</li>
+                            <li>1 tbsp Lemon Juice</li>
+                            <li>100ml room temp water</li>
+                        </ul>
+                        <p><strong>The Strategy:</strong> Take this 15 minutes <em>before</em> a high-carb meal (pizza,
+                            pasta, rice). The acetic acid inactivates the enzyme amylase, which breaks down starch into
+                            sugar.</p>
+                        <p><strong>The Result:</strong> You reduce the glucose spike of that meal by up to 30%. Less
+                            insulin spike = less fat storage = less energy crash.</p>
+                    </div>
+
+                    <h3>Protocol 3: The 3-Day Bloat Banish</h3>
+                    <p>If you feel constantly swollen or puffy, follow this mini-protocol for 72 hours:</p>
+                    <ol class="step-list">
+                        <li><strong>Remove:</strong> Gluten, Dairy, and Raw Vegetables (Cooked veggies are easier to
+                            digest).</li>
+                        <li><strong>Add:</strong> Bone broth or warm soups for dinner.</li>
+                        <li><strong>Amplify:</strong> Double the ginger tea intake (Morning and Night).</li>
+                    </ol>
+                    <div class="tip-box">
+                        <strong>Mindful Eating Rule:</strong> Put your fork down between every single bite. Do not pick
+                        it up until you have swallowed. Use chopsticks if you need to force yourself to slow down.
+                    </div>
+                </div>
+
+                <h3>Common Questions (FAQ)</h3>
+                <details>
+                    <summary>I hate the taste of ACV. What can I do?</summary>
+                    <p>Use a straw to bypass the taste buds and protect teeth. Or, you can take ACV capsules, though
+                        liquid is preferred for the "cephalic" phase of digestion.</p>
+                </details>
+                <details>
+                    <summary>Is spicy food good for digestion?</summary>
+                    <p>It depends on your constitution. For some, cayenne pepper increases Agni (fire). For others with
+                        acid reflux, it exasperates it. Listen to your body.</p>
+                </details>
+                <details>
+                    <summary>Why no raw vegetables?</summary>
+                    <p>Raw veggies contain cellulose, which is hard to break down. If your digestion is weak, cooking
+                        them "pre-digests" the fiber, making nutrients more accessible.</p>
+                </details>
+            </div>
+
+            <!-- Module 3: Rest & Pause -->
+            <div id="rest-pause" class="content-view">
+                <button class="back-btn" onclick="showMenu()">← Back to Menu</button>
+                <img src="img/evening_calm.png" alt="Evening Calm" class="hero-img">
+                <span class="read-time">⏱️ Read Time: 14 Minutes</span>
+
+                <h2>🌙 The Deep Restoration Manual</h2>
+                <p><strong>Recovery is where growth happens.</strong> In a hyper-connected world, the ability to
+                    disconnect and deeply rest is a superpower. Most people are "tired but wired"—exhausted physically
+                    but mentally overstimulated. This manual teaches you how to manually downregulate your nervous
+                    system.</p>
+
+                <div class="content-section">
+                    <h3>Pillar 1: Circadian Biology</h3>
+                    <p>Your body has a master clock (Supra-Chiasmatic Nucleus) that is set by light. To sleep well at
+                        night, you must anchor your rhythm in the morning.</p>
+                    <div class="tip-box">
+                        <strong>The Anchor Protocol:</strong> View morning sunlight within 30 minutes of waking (5-10
+                        mins). This triggers a serotonin release, which is later converted into melatonin (the sleep
+                        hormone) after sunset.
+                    </div>
+
+                    <h3>Pillar 2: The Caffeine Half-Life</h3>
+                    <p>Caffeine blocks adenosine receptors (the chemical that makes you feel tired). It has a half-life
+                        of ~6 hours. If you drink a double espresso (200mg) at 4 PM, you still have 100mg active in your
+                        brain at 10 PM.</p>
+
+                    <div class="science-box">
+                        <span class="science-title">🔬 Sleep Architecture: SWS vs REM</span>
+                        <p><strong>Slow Wave Sleep (Deep Sleep):</strong> Physical repair, growth hormone release,
+                            immune system reboot. Caffeine <strong>decimates</strong> this stage. You might be "asleep"
+                            for 8 hours, but if you miss Deep Sleep, you wake up physically broken.</p>
+                        <p><strong>REM Sleep (Dreaming):</strong> Emotional processing, memory consolidation. Alcohol
+                            destroys this stage.</p>
+                    </div>
+
+                    <h3>Pillar 3: The Digital Sunset</h3>
+                    <p>Blue light from screens mimics the noon-day sun, suppressing melatonin by up to 50%. We need to
+                        simulate a cave-like environment.</p>
+                    <div class="recipe-box">
+                        <span class="recipe-title">The 3-2-1 Protocol:</span>
+                        <ul>
+                            <li><strong>3 Hours Before Bed:</strong> Stop eating. Digestion raises core body
+                                temperature; sleep requires a drop in temperature.</li>
+                            <li><strong>2 Hours Before Bed:</strong> Stop working. Close the laptop. The brain needs a
+                                "buffer zone" to wind down beta waves.</li>
+                            <li><strong>1 Hour Before Bed:</strong> No screens. Phone in another room. Switch to reading
+                                fiction, stretching, or conversation.</li>
+                        </ul>
+                    </div>
+
+                    <h3>Protocol: The Melissa (Lemon Balm) Sedation</h3>
+                    <div class="recipe-box">
+                        <p>Lemon Balm (Melissa officinalis) is a GABA-ergic herb. It increases GABA, the primary
+                            inhibitory neurotransmitter that "brakes" the racing mind.</p>
+                        <span class="recipe-title">Recipe:</span>
+                        <ul>
+                            <li>1 tbsp dried Lemon Balm</li>
+                            <li>1 slice fresh lemon</li>
+                            <li>1 tsp Raw Honey (Optional: The small glucose hit helps liver glycogen stores, preventing
+                                3 AM waking).</li>
+                        </ul>
+                        <p>Steep for 10 minutes covered. Inhale the steam (terpenes) before drinking.</p>
+                    </div>
+
+                    <h3>Emergency Tool: Box Breathing</h3>
+                    <p>Use this when your mind is racing and you can't fall asleep. It forces the heart rate to sync
+                        with the breath (Respiratory Sinus Arrhythmia).</p>
+                    <ul>
+                        <li>Inhale (4s) -> Hold (4s) -> Exhale (4s) -> Hold Empty (4s).</li>
+                        <li>Repeat for 10 rounds. It is physically impossible to remain in a high-stress state while
+                            doing this.</li>
+                    </ul>
+                </div>
+
+                <h3>Common Questions (FAQ)</h3>
+                <details>
+                    <summary>What about Melatonin supplements?</summary>
+                    <p>Use with caution. Exogenous melatonin can downregulate your own production. It's better to use
+                        precursors like Magnesium Glycinate or Tart Cherry Juice.</p>
+                </details>
+                <details>
+                    <summary>I wake up at 3 AM every night. Why?</summary>
+                    <p>This is often a blood sugar crash (stress response) or a liver processing issue. Try a small
+                        amount of raw honey before bed or ensure you aren't drinking alcohol.</p>
+                </details>
+                <details>
+                    <summary>Is "Catch-up sleep" real?</summary>
+                    <p>Partially. You can pay back some "sleep debt" on weekends, but you cannot undo the chronic damage
+                        of consistent deprivation. Consistency > Duration.</p>
+                </details>
+            </div>
+
+            <!-- Module 4: The 3-Step Method -->
+            <div id="three-steps" class="content-view">
+                <button class="back-btn" onclick="showMenu()">← Back to Menu</button>
+                <img src="img/healthy_plate.png" alt="Healthy Plate" class="hero-img">
+                <span class="read-time">⏱️ Read Time: 10 Minutes</span>
+
+                <h2>🚀 The Lifetime Maintenance Blueprint</h2>
+                <p>This is the "Cheat Sheet" for the Lemon Code lifestyle. Complexity is the enemy of execution. If you
+                    forget everything else, just remember these three words: <strong>Hydrate, Activate,
+                        Nourish.</strong> these are the non-negotiables.</p>
+
+                <div class="content-section">
+                    <h3>Step 1: HYDRATE (The First Decision)</h3>
+                    <div class="recipe-box">
+                        <p>"Am I hungry or am I thirsty?"</p>
+                        <p>Most "hunger" pangs in the morning or mid-afternoon are actually cellular dehydration
+                            signals. Your brain is 75% water; even a 2% drop in hydration leads to a 20% drop in
+                            cognitive function.</p>
+                        <p><strong>The Protocol:</strong> Never eat a meal without being hydrated <em>first</em>. Drink
+                            1 glass of water 20 mins before every meal. This primes the stomach lining and curbs false
+                            hunger.</p>
+                    </div>
+
+                    <h3>Step 2: ACTIVATE (The Switch)</h3>
+                    <div class="recipe-box">
+                        <p>We are designed to move. The lymphatic system (sewage) needs gravity and compression to work.
+                        </p>
+                        <center><strong>Energy vs. Time Management</strong></center>
+                        <p>We don't manage time; we manage energy. A 5-minute walk can give you more productive energy
+                            than a double espresso. </p>
+                        <p><strong>The "Movement Snacking" Concept:</strong> Don't just rely on a 1-hour gym session.
+                            Snack on movement all day.
+                            <br>— While coffee brews: 20 Squats.
+                            <br>— On a call: Walk around the room.
+                            <br>— After dinner: 10 minute digestive walk.
+                        </p>
+                    </div>
+
+                    <h3>Step 3: NOURISH (The Fuel)</h3>
+                    <div class="recipe-box">
+                        <p>Food is information. It tells your genes what to do. The goal is blood sugar stability.</p>
+                        <p><strong>The Plate Architecture:</strong></p>
+                        <ul class="step-list">
+                            <li><strong>1. Fiber First (50% of Volume):</strong> Greens, cruciferous veggies. The fiber
+                                creates a literal mesh in the intestine that slows down sugar absorption.</li>
+                            <li><strong>2. Protein & Fat (25-35%):</strong> Eggs, Fish, Meat, Avocado, Olive Oil. These
+                                trigger the hormone CCK, which tells your brain "I am full."</li>
+                            <li><strong>3. Starches/Sweets (15-25%):</strong> Rice, potatoes, fruit. Eat these
+                                <strong>LAST</strong>. By eating them at the end of the meal, you blunt the insulin
+                                spike significantly.</li>
+                        </ul>
+                    </div>
+
+                    <div class="science-box">
+                        <span class="science-title">📅 Sample Weekly Flow</span>
+                        <p><strong>Mon-Fri (The Discipline):</strong> Adhere to the rituals. Morning Water. No phone in
+                            bed. Clean plates. This buys you metabolic credits.</p>
+                        <p><strong>The Weekend (The Release):</strong> Relax the structure. Enjoy a pizza, have a glass
+                            of wine. Because you were disciplined M-F, your body can handle the "insult" without
+                            crashing. This is metabolic flexibility.</p>
+                    </div>
+                </div>
+
+                <h3>Common Questions (FAQ)</h3>
+                <details>
+                    <summary>What if I mess up one day?</summary>
+                    <p>The "All or Nothing" mentality is a trap. If you miss the morning ritual, don't throw the whole
+                        day away. Just win the next meal. Perfection is not required; consistency is.</p>
+                </details>
+                <details>
+                    <summary>Do I need to count calories?</summary>
+                    <p>In this protocol, no. By focusing on fiber, protein, and hydration, satiety signals naturally
+                        regulate your intake. It's about quality and hormonal response, not just math.</p>
+                </details>
+                <details>
+                    <summary>Can I do this while intermittent fasting?</summary>
+                    <p>Absolutely. The Lemon Code fits perfectly. The lemon water does minimal to no damage to a fast
+                        (calories are negligible), and the hydration makes fasting much easier.</p>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+
+            // Basic validation to ensure fields aren't empty, 
+            // but any content will be accepted.
+            if (user !== "" && pass !== "") {
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('members-content').style.display = 'block';
+            } else {
+                alert("Please enter any username and password to proceed.");
+            }
+        }
+
+        function showModule(moduleId) {
+            // Hide main menu
+            document.getElementById('main-menu').style.display = 'none';
+
+            // Hide all content views (reset)
+            const views = document.getElementsByClassName('content-view');
+            for (let view of views) {
+                view.style.display = 'none';
+            }
+
+            // Show selected module
+            document.getElementById(moduleId).style.display = 'block';
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function showMenu() {
+            // Hide all content views
+            const views = document.getElementsByClassName('content-view');
+            for (let view of views) {
+                view.style.display = 'none';
+            }
+
+            // Show main menu
+            document.getElementById('main-menu').style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>
