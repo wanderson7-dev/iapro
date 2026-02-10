@@ -1,0 +1,596 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Nativa | Sanctuary for the Soul</title>
+    <style>
+        :root {
+            --primary-earth: #A65D57;
+            /* Terracotta */
+            --soft-sage: #5F6F52;
+            /* Forest Green */
+            --dark-text: #3D3C3A;
+            /* Warm Charcoal */
+            --light-bg: #F9F7F2;
+            /* Warm Paper */
+            --card-bg: #F2EFE9;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            /* Serif for more "book-like" feel */
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            /* Softer, less rounded */
+            box-shadow: 0 10px 30px rgba(61, 60, 58, 0.08);
+            max-width: 550px;
+            width: 90%;
+            transition: all 0.3s ease;
+            border: 1px solid #Eaeaea;
+        }
+
+        /* Login Styles */
+        #login-form {
+            text-align: center;
+        }
+
+        h2 {
+            color: var(--primary-earth);
+            margin-bottom: 1.5rem;
+            font-weight: normal;
+            letter-spacing: 0.5px;
+            font-size: 1.8rem;
+        }
+
+        p {
+            line-height: 1.8;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background: #FAFAFA;
+            font-family: inherit;
+        }
+
+        button {
+            background-color: var(--primary-earth);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: opacity 0.2s;
+            font-family: inherit;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        /* Module Navigation Styles */
+        .module-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .module-card {
+            background: var(--card-bg);
+            border-left: 4px solid var(--soft-sage);
+            padding: 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .module-card:hover {
+            transform: translateY(-2px);
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .module-icon {
+            font-size: 1.5rem;
+            margin-right: 20px;
+            color: var(--soft-sage);
+        }
+
+        .module-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--dark-text);
+            letter-spacing: 0.5px;
+        }
+
+        /* Content View Styles */
+        .content-view {
+            display: none;
+            animation: fadeIn 0.6s ease;
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: #999;
+            width: auto;
+            border-bottom: 1px solid transparent;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+
+        .back-btn:hover {
+            color: var(--primary-earth);
+            border-bottom: 1px solid var(--primary-earth);
+            opacity: 1;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            filter: contrast(0.95) sepia(0.1);
+            /* Vintage look */
+        }
+
+        .read-time {
+            font-style: italic;
+            font-size: 0.85rem;
+            color: #888;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        /* Specific Content Boxes */
+        .ritual-box,
+        .journal-box,
+        .recipe-box {
+            background: #fff;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+
+        .ritual-box {
+            border-left: 3px solid var(--primary-earth);
+        }
+
+        .journal-box {
+            border-left: 3px solid var(--soft-sage);
+            background: #fbfbfb;
+            font-style: italic;
+        }
+
+        .recipe-box {
+            border-left: 3px solid #D4A373;
+        }
+
+        h3 {
+            color: var(--soft-sage);
+            font-weight: normal;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            font-size: 1.4rem;
+        }
+
+        ul,
+        ol {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* FAQ details */
+        details {
+            background: #FAFAFA;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        summary {
+            cursor: pointer;
+            color: var(--primary-earth);
+            font-weight: 600;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div id="login-form">
+            <h2>Aurora Nativa</h2>
+            <p>A circle of trust. A return to roots.</p>
+            <input type="text" id="username" placeholder="Your Name">
+            <input type="password" id="password" placeholder="Access Code">
+            <button onclick="login()">Enter Sanctuary</button>
+        </div>
+
+        <div id="members-content" style="display:none;">
+            <!-- Main Menu View -->
+            <div id="main-menu">
+                <h2>Welcome Home.</h2>
+                <p>There are no hacks here. Only pause, presence, and roots.</p>
+
+                <div class="module-grid">
+                    <div class="module-card" onclick="showModule('natural-rituals')">
+                        <div>
+                            <span class="module-icon">🌿</span>
+                            <span class="module-title">Natural Rituals</span>
+                        </div>
+                        <span>→</span>
+                    </div>
+
+                    <div class="module-card" onclick="showModule('intuitive-writing')">
+                        <div>
+                            <span class="module-icon">📝</span>
+                            <span class="module-title">Intuitive Writing</span>
+                        </div>
+                        <span>→</span>
+                    </div>
+
+                    <div class="module-card" onclick="showModule('functional-nourishment')">
+                        <div>
+                            <span class="module-icon">🍲</span>
+                            <span class="module-title">Functional Nourishment</span>
+                        </div>
+                        <span>→</span>
+                    </div>
+
+                    <div class="module-card" onclick="showModule('symbolic-gatherings')">
+                        <div>
+                            <span class="module-icon">🫱🏼🫲🏾</span>
+                            <span class="module-title">Symbolic Gatherings</span>
+                        </div>
+                        <span>→</span>
+                    </div>
+                </div>
+
+                <div class="footer-note">
+                    You are part of something greater. <br>
+                    <a href="#" style="color:var(--soft-sage); text-decoration:none;">Access Complementary Resources</a>
+                </div>
+
+                <button onclick="location.reload()"
+                    style="background:none; color:#bbb; margin-top:30px; border:1px solid #eee;">Leave Quietly</button>
+            </div>
+
+            <!-- MODULE 1: Natural Rituals -->
+            <div id="natural-rituals" class="content-view">
+                <button class="back-btn" onclick="showMenu()">← Return to Circle</button>
+                <img src="img/an_rituals.png" alt="Candle Ritual" class="hero-img">
+                <span class="read-time">Reading Time: 15 Minutes</span>
+
+                <h2>🌿 Natural Rituals: The Art of Rooting</h2>
+                <p><strong>We are not separate from nature; we are nature.</strong> The modern illness is often a result
+                    of severing this connection. Rituals are the bridge back. They are not "tasks" to complete, but
+                    moments to anchor your nervous system.</p>
+
+                <div class="content-section">
+                    <h3>Ritual 1: Earthing (Grounding)</h3>
+                    <p>The Earth is a giant battery. It carries a subtle, negative electrical charge. Our bodies, due to
+                        stress and inflammation, often carry a positive charge (free radicals). When you touch the
+                        earth, you discharge.</p>
+
+                    <div class="ritual-box">
+                        <strong>The Protocol:</strong>
+                        <ol>
+                            <li>Remove shoes and socks. Synthetic rubber soles block the electron transfer.</li>
+                            <li>Find grass, soil, sand, or unsealed concrete. (Wood and asphalt do not conduct well).
+                            </li>
+                            <li>Stand or sit for <strong>20 minutes</strong>.</li>
+                            <li><em>Visualization:</em> Imagine roots growing from your heels, deep into the magma of
+                                the Earth. Inhale red energy from the earth; exhale gray smoke (stress) back down.</li>
+                        </ol>
+                    </div>
+
+                    <div class="science-box"
+                        style="border-left: 3px solid var(--soft-sage); padding: 15px; margin: 20px 0; background: #f4f8f4;">
+                        <strong>🔬 The Science of Electrons:</strong> Peer-reviewed studies show that Earthing shifts
+                        the autonomic nervous system from sympathetic (fight-or-flight) to parasympathetic
+                        (rest-and-digest) within minutes. It consistently reduces blood viscosity (thinning the blood)
+                        and lowers cortisol levels.
+                    </div>
+
+                    <h3>Ritual 2: Solar Gazing (Sanity Maintenance)</h3>
+                    <p>Light is the primary "zeitgeber" (time-giver) for your biology. Your hormones wait for a light
+                        signal to know what to do.</p>
+                    <div class="ritual-box">
+                        <strong>The Protocol:</strong>
+                        <ul>
+                            <li><strong>Morning (First 30 mins):</strong> View morning light to trigger Cortisol
+                                (energy) and set the timer for Melatonin (sleep) 12-14 hours later.</li>
+                            <li><strong>Evening (Sunset):</strong> View the fading light. The specific wavelengths of
+                                sunset lower cortisol and prepare the body for restoration.</li>
+                        </ul>
+                    </div>
+
+                    <h3>Ritual 3: Shinrin-yoku (Forest Bathing)</h3>
+                    <p>A Japanese practice of "taking in the forest atmosphere." Trees release volatile organic
+                        compounds called phytoncides to protect themselves from rot and insects. When we breathe these
+                        in, our bodies increase the number and activity of Natural Killer (NK) cells.</p>
+                    <div class="journal-box">
+                        <strong>The 5-Senses Walk:</strong>
+                        <p>Walk slowly. Stop often. Engage your senses one by one:</p>
+                        <ul>
+                            <li><em>Sight:</em> Notice the fractals in the leaves.</li>
+                            <li><em>Sound:</em> Hear the crunch of leaves or bird song.</li>
+                            <li><em>Smell:</em> Inhale the pine/damp earth scent (geosmin).</li>
+                            <li><em>Touch:</em> Place a hand on the rough bark of a tree.</li>
+                            <li><em>Taste:</em> Taste the air.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <details>
+                    <summary>Can I do Earthing in winter?</summary>
+                    <p>Yes, but be safe. Even 2 minutes in the cold can be invigorating. Alternatively, use a grounding
+                        mat connected to the ground port of an electrical outlet.</p>
+                </details>
+                <details>
+                    <summary>What if I live in a city?</summary>
+                    <p>Find a park. Even a small patch of grass works. Or keep houseplants—touching the soil of a potted
+                        plant connects you to its microbiome, if not the Earth's electrical field directly.</p>
+                </details>
+            </div>
+
+            <!-- MODULE 2: Intuitive Writing -->
+            <div id="intuitive-writing" class="content-view">
+                <button class="back-btn" onclick="showMenu()">← Return to Circle</button>
+                <img src="img/an_writing.png" alt="Journaling" class="hero-img">
+                <span class="read-time">Reading Time: 18 Minutes</span>
+
+                <h2>📝 Intuitive Writing: Emotional Digestion</h2>
+                <p><strong>Writing is a form of metabolism.</strong> Just as your gut digests food, your psyche must
+                    digest experiences. If you don't "digest" your emotions, they remain stuck in the body as tension,
+                    anxiety, or numbness. This module is your digestive aid.</p>
+
+                <h3>Practice 1: The "Psychic Drain" (Morning Pages)</h3>
+                <p>The goal is not to write something "good." The goal is to clear the "mental throat" so the real voice
+                    can speak.</p>
+                <div class="journal-box">
+                    <strong>The Protocol:</strong>
+                    <ul>
+                        <li><strong>Tools:</strong> Analog only. Pen and paper. No screens.</li>
+                        <li><strong>Volume:</strong> 3 pages (A4 or Letter), strictly.</li>
+                        <li><strong>Content:</strong> Stream of consciousness. Whining, complaints, grocery lists, "I'm
+                            tired," "I hate this pen."</li>
+                        <li><strong>The Rule:</strong> Do NOT stop moving the pen. If you have nothing to say, write "I
+                            have nothing to say" until a new thought arrives.</li>
+                    </ul>
+                    <p><em>Why it works:</em> The first 1.5 pages are usually superficial defense mechanisms. The "real
+                        stuff"—the creative insights and hidden fears—usually hides on page 3.</p>
+                </div>
+
+                <h3>Practice 2: Shadow Work Prompts</h3>
+                <p>The "Shadow" is the part of us we hide, deny, or reject. It is not necessarily "evil"; it is just
+                    hidden. Reclaiming it liberates massive amounts of energy.</p>
+                <div class="ritual-box">
+                    <strong>Weekly Prompts:</strong>
+                    <ol>
+                        <li><em>"What trait do I judge most harshly in others?"</em> (This is often a trait you possess
+                            but suppress).</li>
+                        <li><em>"Where in my life am I playing the victim?"</em> (Be brutally honest. Where are you
+                            giving away your power?).</li>
+                        <li><em>"If I were guaranteed not to fail, what would I start today?"</em></li>
+                        <li><em>"What is the lie I am telling myself to keep the peace?"</em></li>
+                    </ol>
+                </div>
+
+                <h3>Practice 3: The Burn Letter (Release)</h3>
+                <p>For anger, grief, or resentment that feels "stuck."</p>
+                <div class="journal-box">
+                    <strong>Protocol:</strong>
+                    <ol>
+                        <li>Address the letter to the person (or situation) you are angry at.</li>
+                        <li>Write with zero filter. Curse, scream on the page. Say the things you typically "shouldn't"
+                            say. Get the poison <strong>OUT</strong>.</li>
+                        <li><strong>CRITICAL:</strong> Do not send it. DO not re-read it.</li>
+                        <li>Take it to a safe place (sink, fire pit) and burn it. Watch it turn to ash.</li>
+                        <li>Wash your hands with cold water. It is done.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- MODULE 3: Functional Nourishment -->
+            <div id="functional-nourishment" class="content-view">
+                <button class="back-btn" onclick="showMenu()">← Return to Circle</button>
+                <img src="img/an_nourishment.png" alt="Healthy Stew" class="hero-img">
+                <span class="read-time">Reading Time: 20 Minutes</span>
+
+                <h2>🍲 Functional Nourishment: Eating as Prayer</h2>
+                <p><strong>Food is not just fuel; it is information.</strong> Every bite sends a signal to your genes,
+                    telling them to express health or inflammation. Here, we restore the sanctity of the meal.</p>
+
+                <h3>Concept 1: The "High Vibration" Ingredient List</h3>
+                <p>We focus on "Single Ingredient Foods"—foods that didn't need a factory to create.</p>
+                <div class="recipe-box">
+                    <ul>
+                        <li><strong>Roots (Grounding):</strong> Sweet Potatoes, Beets, Carrots, Turmeric, Ginger. (Good
+                            for anxiety).</li>
+                        <li><strong>Greens (Expansive):</strong> Kale, Chard, Spinach, Fresh Herbs. (Good for
+                            stagnation).</li>
+                        <li><strong>Fats (Protective):</strong> Avocado, Ghee, Olive Oil, Coconut Oil. (Good for nervous
+                            system repair).</li>
+                    </ul>
+                </div>
+
+                <h3>Concept 2: The Cephalic Phase (Digestion begins in the Mind)</h3>
+                <p>If you eat while stressed or scrolling, your body is in sympathetic mode. Blood is in your limbs, not
+                    your stomach. You <em>will</em> be bloated.</p>
+                <div class="ritual-box">
+                    <strong>The Pre-Eating Ritual (30 Seconds):</strong>
+                    <ol>
+                        <li>Sit down. Feet flat on the floor.</li>
+                        <li>Look at your food. Acknowledge the life effectively sacrificed for you to live (plant or
+                            animal).</li>
+                        <li>Take 3 deep breaths. Inhale through nose, exhale through mouth.</li>
+                        <li><em>Gratitude:</em> "Thank you to the earth, sun, and rain."</li>
+                        <li>Eat the first bite with your eyes closed.</li>
+                    </ol>
+                </div>
+
+                <h3>Recipe: The "Golden Root" Grounding Stew</h3>
+                <p>A medicine meal for when you feel unmoored or physically cold.</p>
+                <div class="recipe-box">
+                    <strong>Ingredients:</strong>
+                    <ul>
+                        <li>1 tbsp Coconut Oil</li>
+                        <li>1 Onion (diced)</li>
+                        <li>3 cloves Garlic (minced)</li>
+                        <li>1 tbsp Fresh Ginger (grated)</li>
+                        <li>1 tbsp Fresh Turmeric (grated)</li>
+                        <li>2 large Sweet Potatoes (cubed)</li>
+                        <li>1 Cup Red Lentils (rinsed)</li>
+                        <li>4 Cups Vegetable Broth</li>
+                        <li>1 Can Full-Fat Coconut Milk</li>
+                        <li>Spinach (added at end)</li>
+                    </ul>
+                    <p><strong>Method:</strong> Sauté onion/garlic/ginger/turmeric until fragrant. Add potatoes and
+                        lentils. Add broth. Simmer 20 mins until soft. Stir in coconut milk. Turn off heat. Stir in
+                        spinach until wilted. Serve with lime juice.</p>
+                </div>
+            </div>
+
+            <!-- MODULE 4: Symbolic Gatherings -->
+            <div id="symbolic-gatherings" class="content-view">
+                <button class="back-btn" onclick="showMenu()">← Return to Circle</button>
+                <img src="img/an_gathering.png" alt="Community Circle" class="hero-img">
+                <span class="read-time">Reading Time: 12 Minutes</span>
+
+                <h2>🫱🏼🫲🏾 Symbolic Gatherings: The Medicine of Community</h2>
+                <p><strong>We are wounded in relationships, and we heal in relationships.</strong> Isolation is the
+                    enemy of mental resilience. Aurora Nativa is your "Third Place"—a space that is neither work nor
+                    home, but community.</p>
+
+                <h3>The Lost Art of "The Circle"</h3>
+                <p>In a hierarchy (pyramid), people look up or down. In a circle, everyone is equal. There is no head of
+                    the table. We see every face.</p>
+
+                <div class="ritual-box">
+                    <strong>The Listening Protocol (Council):</strong>
+                    <p>When you gather with friends or in our virtual circles, practice this ancient technology:</p>
+                    <ul>
+                        <li><strong>The Centerpiece:</strong> Place a candle or flower in the center. This holds the
+                            focus.</li>
+                        <li><strong>The Talking Piece:</strong> Only the person holding the object (stone, stick, pen)
+                            may speak.</li>
+                        <li><strong>No Cross-Talk:</strong> When someone shares a pain, we do NOT say "Have you tried
+                            X?" or "Oh, me too." We simply listen. We offer presence, not solutions.</li>
+                        <li><strong>Confidentiality:</strong> "What is said in the circle, stays in the circle."</li>
+                    </ul>
+                </div>
+
+                <h3>Ritual: The New Moon Intention</h3>
+                <p>The New Moon is the cosmic time of "planting seeds" (darkness/germination).</p>
+                <div class="journal-box">
+                    <strong>Gathering Format:</strong>
+                    <ol>
+                        <li>Gather 2-3 trusted friends (or do this solo).</li>
+                        <li>Light a candle. Close eyes. Take 3 breaths together.</li>
+                        <li><strong>Share:</strong> "What am I ready to let go of from the last cycle?"</li>
+                        <li><strong>Share:</strong> "What am I calling in for this new cycle?"</li>
+                        <li>Write the intentions down. Speak them aloud: "I call in..."</li>
+                    </ol>
+                </div>
+
+                <h3>Finding Your Pod</h3>
+                <p>You are encouraged to find 2-3 "Accountability Hearts" within the community. These are people you
+                    check in with, not about goals/productivity, but about state of being: "How is your heart today?"
+                </p>
+
+                <details>
+                    <summary>I feel shy/introverted. Is this for me?</summary>
+                    <p>Circles are perfect for introverts because there is no "small talk." You speak your truth when it
+                        is your turn, and the rest of the time you have permission to be quiet and listen.</p>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            if (user !== "" && pass !== "") {
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('members-content').style.display = 'block';
+            } else {
+                alert("Please enter your name to enter the sanctuary.");
+            }
+        }
+
+        function showModule(moduleId) {
+            document.getElementById('main-menu').style.display = 'none';
+            const views = document.getElementsByClassName('content-view');
+            for (let view of views) { view.style.display = 'none'; }
+            document.getElementById(moduleId).style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function showMenu() {
+            const views = document.getElementsByClassName('content-view');
+            for (let view of views) { view.style.display = 'none'; }
+            document.getElementById('main-menu').style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>
