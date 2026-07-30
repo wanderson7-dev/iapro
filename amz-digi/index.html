@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Activation</title>
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #FFFFFF;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        /* Alert Banner */
+        .alert-banner {
+            width: 100%;
+            background-color: #D32F2F; /* A vibrant red */
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            box-sizing: border-box;
+        }
+
+        .alert-icon {
+            color: #FFEB3B; /* Bright yellow */
+            font-size: 1.2em;
+        }
+
+        /* Content Area */
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .content p {
+            margin: 15px 0;
+            max-width: 100%;
+        }
+
+        .promo-text {
+            font-size: 1.2em;
+            margin-top: 25px;
+        }
+
+        /* Activation Button / Progress Ring Container */
+        .activation-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 60px;
+            width: 100%;
+        }
+
+        /* The circular activation button */
+        .activation-button {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 25px solid #E0E0E0; /* Light gray border for progress */
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            box-sizing: border-box;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Hover effect */
+        .activation-button:hover {
+            border-color: #CECECE;
+            background-color: #F8F8F8;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        /* Percentage text */
+        .percent {
+            font-size: 4em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        /* Instruction text */
+        .instruction {
+            font-size: 1.1em;
+            color: #757575;
+        }
+
+        /* Message in Portuguese */
+        .portuguese-message {
+            color: #757575;
+            font-size: 0.95em;
+            margin-top: 60px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .alert-banner {
+                font-size: 0.9em;
+                padding: 10px;
+            }
+            .content {
+                padding: 40px 15px;
+            }
+            .activation-button {
+                width: 250px;
+                height: 250px;
+                border-width: 20px;
+            }
+            .percent {
+                font-size: 3.2em;
+            }
+            .instruction {
+                font-size: 1em;
+            }
+            .portuguese-message {
+                margin-top: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="alert-banner">
+        <span class="alert-icon">⚠</span>
+        <span>Attention! Your access to the APP is not yet 100% complete...</span>
+    </div>
+
+    <main class="content">
+        <p>The app was recently updated to <strong>version 2.0</strong> – only your final activation is missing.</p>
+
+        <p class="promo-text">
+            <strong>Activate it now</strong> and start earning up to <strong>3x more</strong>.<br>
+            🚀
+        </p>
+
+        <p>Click the button below to start the activation process.</p>
+
+        <!-- Container onde o upsell será exibido -->
+        <div id="vendepay-upsell-container"></div>
+
+        <!-- Script do widget Vendepay Upsell -->
+        <script src="https://widget.vendepay.com/upsell-widget/v1/vendepay-upsell-widget-1.0.16.js?upsellId=0c13f212-6ee6-437b-9e40-48272427d421"
+                onload="window.VendepayUpsellWidget && window.VendepayUpsellWidget.showIframe('vendepay-upsell-container')">
+        </script>
+
+        <div class="activation-container">
+            <div class="activation-button" role="button" tabindex="0" aria-label="Start activation process, current progress 0%">
+                <div class="percent">0%</div>
+                <div class="instruction">Click the button to start ↑</div>
+            </div>
+
+
+        </div>
+    </main>
+
+    <!-- Clicar no círculo dispara o mesmo clique do botão .accept do upsell -->
+    <script>
+        (function () {
+            var circle = document.querySelector('.activation-button');
+
+            // Procura o botão .accept na página e em iframes do mesmo domínio
+            function findAcceptButton() {
+                var btn = document.querySelector('button.accept');
+                if (btn) return btn;
+
+                var iframes = document.querySelectorAll('iframe');
+                for (var i = 0; i < iframes.length; i++) {
+                    try {
+                        var doc = iframes[i].contentDocument || iframes[i].contentWindow.document;
+                        var inner = doc && doc.querySelector('button.accept');
+                        if (inner) return inner;
+                    } catch (e) {
+                        // iframe cross-origin: o navegador bloqueia o acesso
+                    }
+                }
+                return null;
+            }
+
+            function clickAccept() {
+                var btn = findAcceptButton();
+                if (btn) {
+                    btn.click();
+                }
+            }
+
+            if (circle) {
+                circle.addEventListener('click', clickAccept);
+                circle.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        clickAccept();
+                    }
+                });
+            }
+        })();
+    </script>
+
+</body>
+</html>
